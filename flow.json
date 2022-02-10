@@ -22,8 +22,8 @@
         "keyname": "",
         "dburl": "",
         "usetls": false,
-        "x": 390,
-        "y": 360,
+        "x": 230,
+        "y": 260,
         "wires": [
             []
         ]
