@@ -1,12 +1,11 @@
 {
-    "name": "SmartHome",
-    "description": "A Node-RED Project",
-    "version": "0.0.1",
-    "dependencies": {},
     "node-red": {
         "settings": {
-            "flowFile": "flow.json",
-            "credentialsFile": "flow_cred.json"
+            "flowFile": "flows.json",
+            "credentialsFile": "flows_cred.json"
         }
+    },
+    "dependencies": {
+        "node-red-contrib-camerapi": "0.0.39"
     }
 }
