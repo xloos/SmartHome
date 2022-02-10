@@ -1,1 +1,31 @@
-[]
+[
+    {
+        "id": "1646a167200c7e2b",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "9c909f991e92b0a9",
+        "type": "aedes broker",
+        "z": "1646a167200c7e2b",
+        "name": "Broker",
+        "mqtt_port": 1883,
+        "mqtt_ws_bind": "port",
+        "mqtt_ws_port": "",
+        "mqtt_ws_path": "",
+        "cert": "",
+        "key": "",
+        "certname": "",
+        "keyname": "",
+        "dburl": "",
+        "usetls": false,
+        "x": 390,
+        "y": 360,
+        "wires": [
+            []
+        ]
+    }
+]
