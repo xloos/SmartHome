@@ -9,7 +9,7 @@
     {
         "id": "d4742671.796ed8",
         "type": "tab",
-        "label": "Svetla_senzory",
+        "label": "Senzory_pohybu",
         "disabled": false,
         "info": ""
     },
@@ -21,6 +21,14 @@
         "info": ""
     },
     {
+        "id": "f9b1232ab3c774b3",
+        "type": "tab",
+        "label": "Senzory_zvuku",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
         "id": "60f966e1.dc16a8",
         "type": "tab",
         "label": "Pohyb",
@@ -28,16 +36,16 @@
         "info": ""
     },
     {
-        "id": "5a182d46.cf2834",
+        "id": "52746a71.334bd4",
         "type": "tab",
-        "label": "Dvere/okna_zabezpecenie",
+        "label": "Ovladanie_teploty",
         "disabled": false,
         "info": ""
     },
     {
-        "id": "52746a71.334bd4",
+        "id": "5a182d46.cf2834",
         "type": "tab",
-        "label": "Ovladanie_teploty",
+        "label": "Dvere/okna_zabezpecenie",
         "disabled": false,
         "info": ""
     },
@@ -223,12 +231,12 @@
     {
         "id": "3b240061.460c8",
         "type": "ui_group",
-        "name": "Security",
+        "name": "Zabezpečenie",
         "tab": "b7eecb1a.674ce8",
         "order": 1,
         "disp": true,
-        "width": 12,
-        "collapse": false
+        "width": "12",
+        "collapse": true
     },
     {
         "id": "4da70d94.c48a04",
@@ -620,6 +628,16 @@
         "order": 19,
         "width": 2,
         "height": 1
+    },
+    {
+        "id": "026ff6b53224193f",
+        "type": "ui_group",
+        "name": "Zabezpecenie - senzory zvuku",
+        "tab": "b7eecb1a.674ce8",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false
     },
     {
         "id": "ad51e5f3.451568",
@@ -2709,6 +2727,324 @@
         "wires": []
     },
     {
+        "id": "4f10e457c7d3006e",
+        "type": "ui_switch",
+        "z": "f9b1232ab3c774b3",
+        "name": "",
+        "label": "Povoliť zvukové senzory",
+        "tooltip": "",
+        "group": "026ff6b53224193f",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "x": 250,
+        "y": 200,
+        "wires": [
+            [
+                "a46bb92e4e462698"
+            ]
+        ]
+    },
+    {
+        "id": "81df208a9400f9a0",
+        "type": "ui_led",
+        "z": "f9b1232ab3c774b3",
+        "order": 1,
+        "group": "026ff6b53224193f",
+        "width": 0,
+        "height": 0,
+        "label": "Zvuk v dome",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "",
+        "x": 610,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "665b5eb9a760d835",
+        "type": "ui_led",
+        "z": "f9b1232ab3c774b3",
+        "order": 2,
+        "group": "026ff6b53224193f",
+        "width": 0,
+        "height": 0,
+        "label": "Zvuk v garáži",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "",
+        "x": 610,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "a46bb92e4e462698",
+        "type": "change",
+        "z": "f9b1232ab3c774b3",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "zvuk",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 480,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "97e699b00a4670e7",
+        "type": "inject",
+        "z": "f9b1232ab3c774b3",
+        "name": "Zachytenie_zvuku_dom",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 160,
+        "y": 360,
+        "wires": [
+            [
+                "7b95b92ae7a285a7"
+            ]
+        ]
+    },
+    {
+        "id": "75a40ad92aa852e3",
+        "type": "inject",
+        "z": "f9b1232ab3c774b3",
+        "name": "Zachytenie_zvuku_garaz",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 170,
+        "y": 500,
+        "wires": [
+            [
+                "bfba267b60e661f8"
+            ]
+        ]
+    },
+    {
+        "id": "6635dbe94b115775",
+        "type": "function",
+        "z": "f9b1232ab3c774b3",
+        "name": "",
+        "func": "var os1 = global.get(\"osb1\");\nvar os2 = global.get(\"osb2\");\nvar pom = 0;\nif(os1 || os2){\n    msg.payload=true;\n}else{\n    msg.payload=false;\n    pom = 1;\n}\nif(pom == 1){\nreturn msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 420,
+        "wires": [
+            [
+                "6b3771ca9922ae60",
+                "6972f418d9f5991a"
+            ]
+        ]
+    },
+    {
+        "id": "6972f418d9f5991a",
+        "type": "mqtt out",
+        "z": "f9b1232ab3c774b3",
+        "name": "",
+        "topic": "home/okna",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "30f5ccb2.518334",
+        "x": 890,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "6b3771ca9922ae60",
+        "type": "mqtt out",
+        "z": "f9b1232ab3c774b3",
+        "name": "",
+        "topic": "home/dvere",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "30f5ccb2.518334",
+        "x": 890,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "7b95b92ae7a285a7",
+        "type": "function",
+        "z": "f9b1232ab3c774b3",
+        "name": "",
+        "func": "var zvk = global.get(\"zvuk\");\n\nif(zvk==true){\n    msg.payload=true;\n    return msg;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 360,
+        "wires": [
+            [
+                "81df208a9400f9a0",
+                "f2844818b5e5af38",
+                "6635dbe94b115775"
+            ]
+        ]
+    },
+    {
+        "id": "bfba267b60e661f8",
+        "type": "function",
+        "z": "f9b1232ab3c774b3",
+        "name": "",
+        "func": "var zvk = global.get(\"zvuk\");\n\nif(zvk==true){\n    msg.payload=true;\n    return msg;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 398,
+        "y": 501,
+        "wires": [
+            [
+                "665b5eb9a760d835",
+                "30703084ec121078",
+                "6635dbe94b115775"
+            ]
+        ]
+    },
+    {
+        "id": "f2844818b5e5af38",
+        "type": "trigger",
+        "z": "f9b1232ab3c774b3",
+        "name": "",
+        "op1": "",
+        "op2": "false",
+        "op1type": "nul",
+        "op2type": "bool",
+        "duration": "10",
+        "extend": true,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 490,
+        "y": 440,
+        "wires": [
+            [
+                "81df208a9400f9a0"
+            ]
+        ]
+    },
+    {
+        "id": "30703084ec121078",
+        "type": "trigger",
+        "z": "f9b1232ab3c774b3",
+        "name": "",
+        "op1": "",
+        "op2": "false",
+        "op1type": "nul",
+        "op2type": "bool",
+        "duration": "10",
+        "extend": true,
+        "overrideDelay": false,
+        "units": "s",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 510,
+        "y": 580,
+        "wires": [
+            [
+                "665b5eb9a760d835"
+            ]
+        ]
+    },
+    {
         "id": "fe31fd6e.1daab",
         "type": "mqtt in",
         "z": "60f966e1.dc16a8",
@@ -3035,7 +3371,7 @@
         "shape": "circle",
         "showGlow": true,
         "name": "Led_uzivatel",
-        "x": 750,
+        "x": 730,
         "y": 1060,
         "wires": []
     },
@@ -3406,1021 +3742,6 @@
         "info": "",
         "x": 500,
         "y": 1000,
-        "wires": []
-    },
-    {
-        "id": "660f167e.01fa38",
-        "type": "comment",
-        "z": "5a182d46.cf2834",
-        "name": "Predne dvere",
-        "info": "",
-        "x": 160,
-        "y": 60,
-        "wires": []
-    },
-    {
-        "id": "98baeda2.aa1",
-        "type": "mqtt in",
-        "z": "5a182d46.cf2834",
-        "name": "Data_predne_dvere",
-        "topic": "home/dvere/predne",
-        "qos": "2",
-        "datatype": "auto",
-        "broker": "30f5ccb2.518334",
-        "nl": false,
-        "rap": false,
-        "inputs": 0,
-        "x": 150,
-        "y": 400,
-        "wires": [
-            [
-                "535949b8.e70a88"
-            ]
-        ]
-    },
-    {
-        "id": "e5cd1037.0b5c1",
-        "type": "ui_template",
-        "z": "5a182d46.cf2834",
-        "group": "3b240061.460c8",
-        "name": "Unlock_1",
-        "order": 5,
-        "width": 4,
-        "height": 1,
-        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n</style>\n<md-button class=\"filled rounded\"\n   style=\"background-color:#30833A\"\n    ng-click=\"send({payload: 'unlock', topic: 'pd'})\"> \n    Odomknúť\n</md-button>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "x": 280,
-        "y": 180,
-        "wires": [
-            [
-                "915aa360.7a12d",
-                "535949b8.e70a88"
-            ]
-        ]
-    },
-    {
-        "id": "c4921574.071aa8",
-        "type": "ui_template",
-        "z": "5a182d46.cf2834",
-        "group": "3b240061.460c8",
-        "name": "Lock_1",
-        "order": 6,
-        "width": 4,
-        "height": 1,
-        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n</style>\n<md-button class=\"filled rounded\"\n   style=\"background-color:red\"\n    ng-click=\"send({payload: 'lock', topic: 'pd'})\"> \n    Zamknúť\n</md-button>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "x": 280,
-        "y": 240,
-        "wires": [
-            [
-                "915aa360.7a12d",
-                "535949b8.e70a88"
-            ]
-        ]
-    },
-    {
-        "id": "915aa360.7a12d",
-        "type": "ui_led",
-        "z": "5a182d46.cf2834",
-        "order": 4,
-        "group": "3b240061.460c8",
-        "width": 4,
-        "height": 1,
-        "label": "Predné dvere",
-        "labelPlacement": "left",
-        "labelAlignment": "left",
-        "colorForValue": [
-            {
-                "color": "#ff0000",
-                "value": "lock",
-                "valueType": "str"
-            },
-            {
-                "color": "#008000",
-                "value": "unlock",
-                "valueType": "str"
-            },
-            {
-                "color": "#008000",
-                "value": "true",
-                "valueType": "bool"
-            },
-            {
-                "color": "#ff0000",
-                "value": "false",
-                "valueType": "bool"
-            }
-        ],
-        "allowColorForValueInMessage": false,
-        "shape": "circle",
-        "showGlow": true,
-        "name": "Led_1",
-        "x": 590,
-        "y": 160,
-        "wires": []
-    },
-    {
-        "id": "1e1e9c98.8de1e3",
-        "type": "mqtt in",
-        "z": "5a182d46.cf2834",
-        "name": "",
-        "topic": "home/dvere",
-        "qos": "2",
-        "datatype": "auto",
-        "broker": "30f5ccb2.518334",
-        "nl": false,
-        "rap": false,
-        "inputs": 0,
-        "x": 400,
-        "y": 120,
-        "wires": [
-            [
-                "535949b8.e70a88"
-            ]
-        ]
-    },
-    {
-        "id": "535949b8.e70a88",
-        "type": "function",
-        "z": "5a182d46.cf2834",
-        "name": "",
-        "func": "var jed = msg.payload;\nif(jed == \"unlock\" || jed == \"true\"){\n    msg.payload=true;\n}else if(jed == \"lock\" || jed == \"false\"){\n    msg.payload=false;\n}\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 500,
-        "y": 400,
-        "wires": [
-            [
-                "da8e4d2f.b8ef1",
-                "915aa360.7a12d"
-            ]
-        ]
-    },
-    {
-        "id": "da8e4d2f.b8ef1",
-        "type": "switch",
-        "z": "5a182d46.cf2834",
-        "name": "",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "true"
-            },
-            {
-                "t": "false"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 690,
-        "y": 400,
-        "wires": [
-            [
-                "85a81419.790088"
-            ],
-            [
-                "891affac.eff75"
-            ]
-        ]
-    },
-    {
-        "id": "85a81419.790088",
-        "type": "change",
-        "z": "5a182d46.cf2834",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "Predné dvere odomknuté",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 880,
-        "y": 360,
-        "wires": [
-            [
-                "5ada1cad.7708a4"
-            ]
-        ]
-    },
-    {
-        "id": "891affac.eff75",
-        "type": "change",
-        "z": "5a182d46.cf2834",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "Predné dvere zamknuté",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 880,
-        "y": 420,
-        "wires": [
-            [
-                "5ada1cad.7708a4"
-            ]
-        ]
-    },
-    {
-        "id": "5ada1cad.7708a4",
-        "type": "debug",
-        "z": "5a182d46.cf2834",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1110,
-        "y": 400,
-        "wires": []
-    },
-    {
-        "id": "8c504cbf.953c4",
-        "type": "mqtt in",
-        "z": "5a182d46.cf2834",
-        "name": "Data_zadne_dvere",
-        "topic": "home/dvere/zadne",
-        "qos": "2",
-        "datatype": "auto",
-        "broker": "30f5ccb2.518334",
-        "nl": false,
-        "rap": false,
-        "inputs": 0,
-        "x": 150,
-        "y": 880,
-        "wires": [
-            [
-                "61cb16c6.44edc8"
-            ]
-        ]
-    },
-    {
-        "id": "8db258b6.e31528",
-        "type": "ui_template",
-        "z": "5a182d46.cf2834",
-        "group": "3b240061.460c8",
-        "name": "Unlock_2",
-        "order": 8,
-        "width": 4,
-        "height": 1,
-        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n</style>\n<md-button class=\"filled rounded\"\n   style=\"background-color:#30833A\"\n    ng-click=\"send({payload: 'unlock', topic: 'zd'})\"> \n    Odomknúť\n</md-button>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "x": 320,
-        "y": 720,
-        "wires": [
-            [
-                "13e905b6.80810a",
-                "61cb16c6.44edc8"
-            ]
-        ]
-    },
-    {
-        "id": "44910c8b.a19f94",
-        "type": "ui_template",
-        "z": "5a182d46.cf2834",
-        "group": "3b240061.460c8",
-        "name": "Lock_2",
-        "order": 9,
-        "width": 4,
-        "height": 1,
-        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n</style>\n<md-button class=\"filled rounded\"\n   style=\"background-color:red\"\n    ng-click=\"send({payload: 'lock', topic: 'zd'})\"> \n    Zamknúť\n</md-button>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "x": 320,
-        "y": 780,
-        "wires": [
-            [
-                "13e905b6.80810a",
-                "61cb16c6.44edc8"
-            ]
-        ]
-    },
-    {
-        "id": "13e905b6.80810a",
-        "type": "ui_led",
-        "z": "5a182d46.cf2834",
-        "order": 7,
-        "group": "3b240061.460c8",
-        "width": 4,
-        "height": 1,
-        "label": "Zadné dvere",
-        "labelPlacement": "left",
-        "labelAlignment": "left",
-        "colorForValue": [
-            {
-                "color": "#ff0000",
-                "value": "lock",
-                "valueType": "str"
-            },
-            {
-                "color": "#008000",
-                "value": "unlock",
-                "valueType": "str"
-            },
-            {
-                "color": "#008000",
-                "value": "true",
-                "valueType": "bool"
-            },
-            {
-                "color": "#ff0000",
-                "value": "false",
-                "valueType": "bool"
-            }
-        ],
-        "allowColorForValueInMessage": false,
-        "shape": "circle",
-        "showGlow": true,
-        "name": "Led_2",
-        "x": 530,
-        "y": 740,
-        "wires": []
-    },
-    {
-        "id": "10f14e90.01e6c1",
-        "type": "mqtt in",
-        "z": "5a182d46.cf2834",
-        "name": "",
-        "topic": "home/dvere",
-        "qos": "2",
-        "datatype": "auto",
-        "broker": "30f5ccb2.518334",
-        "inputs": 0,
-        "x": 430,
-        "y": 660,
-        "wires": [
-            [
-                "61cb16c6.44edc8"
-            ]
-        ]
-    },
-    {
-        "id": "61cb16c6.44edc8",
-        "type": "function",
-        "z": "5a182d46.cf2834",
-        "name": "",
-        "func": "var jed = msg.payload;\nif(jed == \"unlock\" || jed == \"true\"){\n    msg.payload=true;\n}else if(jed == \"lock\" || jed == \"false\"){\n    msg.payload=false;\n}\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 540,
-        "y": 880,
-        "wires": [
-            [
-                "bb9a4195.84a87",
-                "13e905b6.80810a"
-            ]
-        ]
-    },
-    {
-        "id": "bb9a4195.84a87",
-        "type": "switch",
-        "z": "5a182d46.cf2834",
-        "name": "",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "true"
-            },
-            {
-                "t": "false"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 730,
-        "y": 880,
-        "wires": [
-            [
-                "ad245aef.3d9d18"
-            ],
-            [
-                "b3b7994a.5f5ae8"
-            ]
-        ]
-    },
-    {
-        "id": "ad245aef.3d9d18",
-        "type": "change",
-        "z": "5a182d46.cf2834",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "Zadné dvere odomknuté",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 920,
-        "y": 840,
-        "wires": [
-            [
-                "2a46e66a.800e6a"
-            ]
-        ]
-    },
-    {
-        "id": "b3b7994a.5f5ae8",
-        "type": "change",
-        "z": "5a182d46.cf2834",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "Zadné dvere zamknuté",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 920,
-        "y": 900,
-        "wires": [
-            [
-                "2a46e66a.800e6a"
-            ]
-        ]
-    },
-    {
-        "id": "2a46e66a.800e6a",
-        "type": "debug",
-        "z": "5a182d46.cf2834",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1150,
-        "y": 860,
-        "wires": []
-    },
-    {
-        "id": "d741b89d.89d4d8",
-        "type": "comment",
-        "z": "5a182d46.cf2834",
-        "name": "Zadne dvere",
-        "info": "",
-        "x": 150,
-        "y": 540,
-        "wires": []
-    },
-    {
-        "id": "f6b12617.755b78",
-        "type": "mqtt in",
-        "z": "5a182d46.cf2834",
-        "name": "Data_dvere_garaz",
-        "topic": "home/dvere/garaz",
-        "qos": "2",
-        "datatype": "auto",
-        "broker": "30f5ccb2.518334",
-        "nl": false,
-        "rap": false,
-        "inputs": 0,
-        "x": 150,
-        "y": 1340,
-        "wires": [
-            [
-                "e58ca15e.491a8"
-            ]
-        ]
-    },
-    {
-        "id": "1720746e.8ad3cc",
-        "type": "ui_template",
-        "z": "5a182d46.cf2834",
-        "group": "3b240061.460c8",
-        "name": "Unlock_4",
-        "order": 14,
-        "width": 4,
-        "height": 1,
-        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n</style>\n<md-button class=\"filled rounded\"\n   style=\"background-color:#30833A\"\n    ng-click=\"send({payload: 'unlock', topic: 'zd'})\"> \n    Odomknúť\n</md-button>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "x": 320,
-        "y": 1180,
-        "wires": [
-            [
-                "7c6f3a26.f6d214",
-                "e58ca15e.491a8"
-            ]
-        ]
-    },
-    {
-        "id": "9e7b7be8.8b5d18",
-        "type": "ui_template",
-        "z": "5a182d46.cf2834",
-        "group": "3b240061.460c8",
-        "name": "Lock_4",
-        "order": 15,
-        "width": 4,
-        "height": 1,
-        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n</style>\n<md-button class=\"filled rounded\"\n   style=\"background-color:red\"\n    ng-click=\"send({payload: 'lock', topic: 'zd'})\"> \n    Zamknúť\n</md-button>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "x": 320,
-        "y": 1240,
-        "wires": [
-            [
-                "7c6f3a26.f6d214",
-                "e58ca15e.491a8"
-            ]
-        ]
-    },
-    {
-        "id": "7c6f3a26.f6d214",
-        "type": "ui_led",
-        "z": "5a182d46.cf2834",
-        "order": 13,
-        "group": "3b240061.460c8",
-        "width": 4,
-        "height": 1,
-        "label": "Dvere do garáže",
-        "labelPlacement": "left",
-        "labelAlignment": "left",
-        "colorForValue": [
-            {
-                "color": "#ff0000",
-                "value": "lock",
-                "valueType": "str"
-            },
-            {
-                "color": "#008000",
-                "value": "unlock",
-                "valueType": "str"
-            },
-            {
-                "color": "#008000",
-                "value": "true",
-                "valueType": "bool"
-            },
-            {
-                "color": "#ff0000",
-                "value": "false",
-                "valueType": "bool"
-            }
-        ],
-        "allowColorForValueInMessage": false,
-        "shape": "circle",
-        "showGlow": true,
-        "name": "Led_4",
-        "x": 530,
-        "y": 1200,
-        "wires": []
-    },
-    {
-        "id": "36f4edaa.8ac5f2",
-        "type": "mqtt in",
-        "z": "5a182d46.cf2834",
-        "name": "",
-        "topic": "home/dvere",
-        "qos": "2",
-        "datatype": "auto",
-        "broker": "30f5ccb2.518334",
-        "inputs": 0,
-        "x": 430,
-        "y": 1120,
-        "wires": [
-            [
-                "e58ca15e.491a8"
-            ]
-        ]
-    },
-    {
-        "id": "e58ca15e.491a8",
-        "type": "function",
-        "z": "5a182d46.cf2834",
-        "name": "",
-        "func": "var jed = msg.payload;\nif(jed == \"unlock\" || jed == \"true\"){\n    msg.payload=true;\n}else if(jed == \"lock\" || jed == \"false\"){\n    msg.payload=false;\n}\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 540,
-        "y": 1340,
-        "wires": [
-            [
-                "5da4631e.5ae86c",
-                "7c6f3a26.f6d214"
-            ]
-        ]
-    },
-    {
-        "id": "5da4631e.5ae86c",
-        "type": "switch",
-        "z": "5a182d46.cf2834",
-        "name": "",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "true"
-            },
-            {
-                "t": "false"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 730,
-        "y": 1340,
-        "wires": [
-            [
-                "40d657f2.bcbd08"
-            ],
-            [
-                "25bee3f.514d01c"
-            ]
-        ]
-    },
-    {
-        "id": "40d657f2.bcbd08",
-        "type": "change",
-        "z": "5a182d46.cf2834",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "Dvere do garáže odomknuté",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 920,
-        "y": 1300,
-        "wires": [
-            [
-                "a220da1a.c3b0a8"
-            ]
-        ]
-    },
-    {
-        "id": "25bee3f.514d01c",
-        "type": "change",
-        "z": "5a182d46.cf2834",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "Dvere do garáže zamknuté",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 920,
-        "y": 1360,
-        "wires": [
-            [
-                "a220da1a.c3b0a8"
-            ]
-        ]
-    },
-    {
-        "id": "fae1318d.07d5b",
-        "type": "comment",
-        "z": "5a182d46.cf2834",
-        "name": "Dvere z garáže",
-        "info": "",
-        "x": 160,
-        "y": 1060,
-        "wires": []
-    },
-    {
-        "id": "3b118000.5c5c3",
-        "type": "ui_template",
-        "z": "5a182d46.cf2834",
-        "group": "3b240061.460c8",
-        "name": "Unlock_3",
-        "order": 11,
-        "width": 4,
-        "height": 1,
-        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n</style>\n<md-button class=\"filled rounded\"\n   style=\"background-color:#30833A\"\n    ng-click=\"send({payload: 'unlock', topic: 'zd'})\"> \n    Odomknúť\n</md-button>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "x": 200,
-        "y": 1600,
-        "wires": [
-            [
-                "6cbe20eb.abfe6",
-                "e9b012b7.52dca"
-            ]
-        ]
-    },
-    {
-        "id": "22230dc8.842372",
-        "type": "ui_template",
-        "z": "5a182d46.cf2834",
-        "group": "3b240061.460c8",
-        "name": "Lock_3",
-        "order": 12,
-        "width": 4,
-        "height": 1,
-        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n</style>\n<md-button class=\"filled rounded\"\n   style=\"background-color:red\"\n    ng-click=\"send({payload: 'lock', topic: 'zd'})\"> \n    Zamknúť\n</md-button>",
-        "storeOutMessages": true,
-        "fwdInMessages": true,
-        "resendOnRefresh": true,
-        "templateScope": "local",
-        "x": 200,
-        "y": 1660,
-        "wires": [
-            [
-                "6cbe20eb.abfe6",
-                "e9b012b7.52dca"
-            ]
-        ]
-    },
-    {
-        "id": "6cbe20eb.abfe6",
-        "type": "ui_led",
-        "z": "5a182d46.cf2834",
-        "order": 10,
-        "group": "3b240061.460c8",
-        "width": 4,
-        "height": 1,
-        "label": "Okná",
-        "labelPlacement": "left",
-        "labelAlignment": "left",
-        "colorForValue": [
-            {
-                "color": "#ff0000",
-                "value": "lock",
-                "valueType": "str"
-            },
-            {
-                "color": "#008000",
-                "value": "unlock",
-                "valueType": "str"
-            },
-            {
-                "color": "#008000",
-                "value": "true",
-                "valueType": "bool"
-            },
-            {
-                "color": "#ff0000",
-                "value": "false",
-                "valueType": "bool"
-            }
-        ],
-        "allowColorForValueInMessage": false,
-        "shape": "circle",
-        "showGlow": true,
-        "name": "Led_3",
-        "x": 410,
-        "y": 1620,
-        "wires": []
-    },
-    {
-        "id": "de902d20.3bbe8",
-        "type": "mqtt in",
-        "z": "5a182d46.cf2834",
-        "name": "",
-        "topic": "home/okna",
-        "qos": "2",
-        "datatype": "auto",
-        "broker": "30f5ccb2.518334",
-        "inputs": 0,
-        "x": 120,
-        "y": 1760,
-        "wires": [
-            [
-                "e9b012b7.52dca"
-            ]
-        ]
-    },
-    {
-        "id": "e9b012b7.52dca",
-        "type": "function",
-        "z": "5a182d46.cf2834",
-        "name": "",
-        "func": "var jed = msg.payload;\nif(jed == \"unlock\" || jed == \"true\"){\n    global.set(\"OknoLock\",false);\n    msg.payload=true;\n}else if(jed == \"lock\" || jed == \"false\"){\n    global.set(\"OknoLock\",true);\n    msg.payload=false;\n}\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 420,
-        "y": 1760,
-        "wires": [
-            [
-                "2b3b8839.0c1c78",
-                "6cbe20eb.abfe6",
-                "4f0e1051.74cc9"
-            ]
-        ]
-    },
-    {
-        "id": "2b3b8839.0c1c78",
-        "type": "switch",
-        "z": "5a182d46.cf2834",
-        "name": "",
-        "property": "payload",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "true"
-            },
-            {
-                "t": "false"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 2,
-        "x": 610,
-        "y": 1760,
-        "wires": [
-            [
-                "8ae1d091.4974d"
-            ],
-            [
-                "da506cf7.3a78b"
-            ]
-        ]
-    },
-    {
-        "id": "8ae1d091.4974d",
-        "type": "change",
-        "z": "5a182d46.cf2834",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "Okná v dome odomknuté",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 800,
-        "y": 1740,
-        "wires": [
-            [
-                "fd467e3.97a068"
-            ]
-        ]
-    },
-    {
-        "id": "da506cf7.3a78b",
-        "type": "change",
-        "z": "5a182d46.cf2834",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "Okná v dome zamknuté",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 800,
-        "y": 1780,
-        "wires": [
-            [
-                "fd467e3.97a068"
-            ]
-        ]
-    },
-    {
-        "id": "3224b942.beed36",
-        "type": "comment",
-        "z": "5a182d46.cf2834",
-        "name": "Okna",
-        "info": "",
-        "x": 110,
-        "y": 1500,
-        "wires": []
-    },
-    {
-        "id": "4f0e1051.74cc9",
-        "type": "mqtt out",
-        "z": "5a182d46.cf2834",
-        "name": "Okno_zabezpecenie",
-        "topic": "home/okno_zabezpecenie",
-        "qos": "0",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "30f5ccb2.518334",
-        "x": 635.8958129882812,
-        "y": 1930.2222900390625,
-        "wires": []
-    },
-    {
-        "id": "a220da1a.c3b0a8",
-        "type": "debug",
-        "z": "5a182d46.cf2834",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1150,
-        "y": 1320,
-        "wires": []
-    },
-    {
-        "id": "fd467e3.97a068",
-        "type": "debug",
-        "z": "5a182d46.cf2834",
-        "name": "",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "false",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 1030,
-        "y": 1740,
         "wires": []
     },
     {
@@ -5985,7 +5306,7 @@
         "type": "function",
         "z": "52746a71.334bd4",
         "name": "",
-        "func": "msg.payload = 10;\nreturn msg;",
+        "func": "msg.payload = 22;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -5998,6 +5319,1021 @@
                 "b0dc1f43.ae0a4"
             ]
         ]
+    },
+    {
+        "id": "660f167e.01fa38",
+        "type": "comment",
+        "z": "5a182d46.cf2834",
+        "name": "Predne dvere",
+        "info": "",
+        "x": 160,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "98baeda2.aa1",
+        "type": "mqtt in",
+        "z": "5a182d46.cf2834",
+        "name": "Data_predne_dvere",
+        "topic": "home/dvere/predne",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "30f5ccb2.518334",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 150,
+        "y": 400,
+        "wires": [
+            [
+                "535949b8.e70a88"
+            ]
+        ]
+    },
+    {
+        "id": "e5cd1037.0b5c1",
+        "type": "ui_template",
+        "z": "5a182d46.cf2834",
+        "group": "3b240061.460c8",
+        "name": "Unlock_1",
+        "order": 5,
+        "width": 4,
+        "height": 1,
+        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n</style>\n<md-button class=\"filled rounded\"\n   style=\"background-color:#30833A\"\n    ng-click=\"send({payload: 'unlock', topic: 'pd'})\"> \n    Odomknúť\n</md-button>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 280,
+        "y": 180,
+        "wires": [
+            [
+                "915aa360.7a12d",
+                "535949b8.e70a88"
+            ]
+        ]
+    },
+    {
+        "id": "c4921574.071aa8",
+        "type": "ui_template",
+        "z": "5a182d46.cf2834",
+        "group": "3b240061.460c8",
+        "name": "Lock_1",
+        "order": 6,
+        "width": 4,
+        "height": 1,
+        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n</style>\n<md-button class=\"filled rounded\"\n   style=\"background-color:red\"\n    ng-click=\"send({payload: 'lock', topic: 'pd'})\"> \n    Zamknúť\n</md-button>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 280,
+        "y": 240,
+        "wires": [
+            [
+                "915aa360.7a12d",
+                "535949b8.e70a88"
+            ]
+        ]
+    },
+    {
+        "id": "915aa360.7a12d",
+        "type": "ui_led",
+        "z": "5a182d46.cf2834",
+        "order": 4,
+        "group": "3b240061.460c8",
+        "width": 4,
+        "height": 1,
+        "label": "Predné dvere",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "lock",
+                "valueType": "str"
+            },
+            {
+                "color": "#008000",
+                "value": "unlock",
+                "valueType": "str"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            },
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Led_1",
+        "x": 590,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "1e1e9c98.8de1e3",
+        "type": "mqtt in",
+        "z": "5a182d46.cf2834",
+        "name": "",
+        "topic": "home/dvere",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "30f5ccb2.518334",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 400,
+        "y": 120,
+        "wires": [
+            [
+                "535949b8.e70a88"
+            ]
+        ]
+    },
+    {
+        "id": "535949b8.e70a88",
+        "type": "function",
+        "z": "5a182d46.cf2834",
+        "name": "",
+        "func": "var jed = msg.payload;\nif(jed == \"unlock\" || jed == \"true\"){\n    msg.payload=true;\n}else if(jed == \"lock\" || jed == \"false\"){\n    msg.payload=false;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 400,
+        "wires": [
+            [
+                "da8e4d2f.b8ef1",
+                "915aa360.7a12d"
+            ]
+        ]
+    },
+    {
+        "id": "da8e4d2f.b8ef1",
+        "type": "switch",
+        "z": "5a182d46.cf2834",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 690,
+        "y": 400,
+        "wires": [
+            [
+                "85a81419.790088"
+            ],
+            [
+                "891affac.eff75"
+            ]
+        ]
+    },
+    {
+        "id": "85a81419.790088",
+        "type": "change",
+        "z": "5a182d46.cf2834",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Predné dvere odomknuté",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 880,
+        "y": 360,
+        "wires": [
+            [
+                "5ada1cad.7708a4"
+            ]
+        ]
+    },
+    {
+        "id": "891affac.eff75",
+        "type": "change",
+        "z": "5a182d46.cf2834",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Predné dvere zamknuté",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 880,
+        "y": 420,
+        "wires": [
+            [
+                "5ada1cad.7708a4"
+            ]
+        ]
+    },
+    {
+        "id": "5ada1cad.7708a4",
+        "type": "debug",
+        "z": "5a182d46.cf2834",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1110,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "8c504cbf.953c4",
+        "type": "mqtt in",
+        "z": "5a182d46.cf2834",
+        "name": "Data_zadne_dvere",
+        "topic": "home/dvere/zadne",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "30f5ccb2.518334",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 150,
+        "y": 880,
+        "wires": [
+            [
+                "61cb16c6.44edc8"
+            ]
+        ]
+    },
+    {
+        "id": "8db258b6.e31528",
+        "type": "ui_template",
+        "z": "5a182d46.cf2834",
+        "group": "3b240061.460c8",
+        "name": "Unlock_2",
+        "order": 8,
+        "width": 4,
+        "height": 1,
+        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n</style>\n<md-button class=\"filled rounded\"\n   style=\"background-color:#30833A\"\n    ng-click=\"send({payload: 'unlock', topic: 'zd'})\"> \n    Odomknúť\n</md-button>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 320,
+        "y": 720,
+        "wires": [
+            [
+                "13e905b6.80810a",
+                "61cb16c6.44edc8"
+            ]
+        ]
+    },
+    {
+        "id": "44910c8b.a19f94",
+        "type": "ui_template",
+        "z": "5a182d46.cf2834",
+        "group": "3b240061.460c8",
+        "name": "Lock_2",
+        "order": 9,
+        "width": 4,
+        "height": 1,
+        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n</style>\n<md-button class=\"filled rounded\"\n   style=\"background-color:red\"\n    ng-click=\"send({payload: 'lock', topic: 'zd'})\"> \n    Zamknúť\n</md-button>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 320,
+        "y": 780,
+        "wires": [
+            [
+                "13e905b6.80810a",
+                "61cb16c6.44edc8"
+            ]
+        ]
+    },
+    {
+        "id": "13e905b6.80810a",
+        "type": "ui_led",
+        "z": "5a182d46.cf2834",
+        "order": 7,
+        "group": "3b240061.460c8",
+        "width": 4,
+        "height": 1,
+        "label": "Zadné dvere",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "lock",
+                "valueType": "str"
+            },
+            {
+                "color": "#008000",
+                "value": "unlock",
+                "valueType": "str"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            },
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Led_2",
+        "x": 530,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "10f14e90.01e6c1",
+        "type": "mqtt in",
+        "z": "5a182d46.cf2834",
+        "name": "",
+        "topic": "home/dvere",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "30f5ccb2.518334",
+        "inputs": 0,
+        "x": 430,
+        "y": 660,
+        "wires": [
+            [
+                "61cb16c6.44edc8"
+            ]
+        ]
+    },
+    {
+        "id": "61cb16c6.44edc8",
+        "type": "function",
+        "z": "5a182d46.cf2834",
+        "name": "",
+        "func": "var jed = msg.payload;\nif(jed == \"unlock\" || jed == \"true\"){\n    msg.payload=true;\n}else if(jed == \"lock\" || jed == \"false\"){\n    msg.payload=false;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 540,
+        "y": 880,
+        "wires": [
+            [
+                "bb9a4195.84a87",
+                "13e905b6.80810a"
+            ]
+        ]
+    },
+    {
+        "id": "bb9a4195.84a87",
+        "type": "switch",
+        "z": "5a182d46.cf2834",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 730,
+        "y": 880,
+        "wires": [
+            [
+                "ad245aef.3d9d18"
+            ],
+            [
+                "b3b7994a.5f5ae8"
+            ]
+        ]
+    },
+    {
+        "id": "ad245aef.3d9d18",
+        "type": "change",
+        "z": "5a182d46.cf2834",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Zadné dvere odomknuté",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 920,
+        "y": 840,
+        "wires": [
+            [
+                "2a46e66a.800e6a"
+            ]
+        ]
+    },
+    {
+        "id": "b3b7994a.5f5ae8",
+        "type": "change",
+        "z": "5a182d46.cf2834",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Zadné dvere zamknuté",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 920,
+        "y": 900,
+        "wires": [
+            [
+                "2a46e66a.800e6a"
+            ]
+        ]
+    },
+    {
+        "id": "2a46e66a.800e6a",
+        "type": "debug",
+        "z": "5a182d46.cf2834",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1150,
+        "y": 860,
+        "wires": []
+    },
+    {
+        "id": "d741b89d.89d4d8",
+        "type": "comment",
+        "z": "5a182d46.cf2834",
+        "name": "Zadne dvere",
+        "info": "",
+        "x": 150,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "f6b12617.755b78",
+        "type": "mqtt in",
+        "z": "5a182d46.cf2834",
+        "name": "Data_dvere_garaz",
+        "topic": "home/dvere/garaz",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "30f5ccb2.518334",
+        "nl": false,
+        "rap": false,
+        "inputs": 0,
+        "x": 150,
+        "y": 1340,
+        "wires": [
+            [
+                "e58ca15e.491a8"
+            ]
+        ]
+    },
+    {
+        "id": "1720746e.8ad3cc",
+        "type": "ui_template",
+        "z": "5a182d46.cf2834",
+        "group": "3b240061.460c8",
+        "name": "Unlock_4",
+        "order": 14,
+        "width": 4,
+        "height": 1,
+        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n</style>\n<md-button class=\"filled rounded\"\n   style=\"background-color:#30833A\"\n    ng-click=\"send({payload: 'unlock', topic: 'zd'})\"> \n    Odomknúť\n</md-button>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 320,
+        "y": 1180,
+        "wires": [
+            [
+                "7c6f3a26.f6d214",
+                "e58ca15e.491a8"
+            ]
+        ]
+    },
+    {
+        "id": "9e7b7be8.8b5d18",
+        "type": "ui_template",
+        "z": "5a182d46.cf2834",
+        "group": "3b240061.460c8",
+        "name": "Lock_4",
+        "order": 15,
+        "width": 4,
+        "height": 1,
+        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n</style>\n<md-button class=\"filled rounded\"\n   style=\"background-color:red\"\n    ng-click=\"send({payload: 'lock', topic: 'zd'})\"> \n    Zamknúť\n</md-button>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 320,
+        "y": 1240,
+        "wires": [
+            [
+                "7c6f3a26.f6d214",
+                "e58ca15e.491a8"
+            ]
+        ]
+    },
+    {
+        "id": "7c6f3a26.f6d214",
+        "type": "ui_led",
+        "z": "5a182d46.cf2834",
+        "order": 13,
+        "group": "3b240061.460c8",
+        "width": 4,
+        "height": 1,
+        "label": "Dvere do garáže",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "lock",
+                "valueType": "str"
+            },
+            {
+                "color": "#008000",
+                "value": "unlock",
+                "valueType": "str"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            },
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Led_4",
+        "x": 530,
+        "y": 1200,
+        "wires": []
+    },
+    {
+        "id": "36f4edaa.8ac5f2",
+        "type": "mqtt in",
+        "z": "5a182d46.cf2834",
+        "name": "",
+        "topic": "home/dvere",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "30f5ccb2.518334",
+        "inputs": 0,
+        "x": 430,
+        "y": 1120,
+        "wires": [
+            [
+                "e58ca15e.491a8"
+            ]
+        ]
+    },
+    {
+        "id": "e58ca15e.491a8",
+        "type": "function",
+        "z": "5a182d46.cf2834",
+        "name": "",
+        "func": "var jed = msg.payload;\nif(jed == \"unlock\" || jed == \"true\"){\n    msg.payload=true;\n}else if(jed == \"lock\" || jed == \"false\"){\n    msg.payload=false;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 540,
+        "y": 1340,
+        "wires": [
+            [
+                "5da4631e.5ae86c",
+                "7c6f3a26.f6d214"
+            ]
+        ]
+    },
+    {
+        "id": "5da4631e.5ae86c",
+        "type": "switch",
+        "z": "5a182d46.cf2834",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 730,
+        "y": 1340,
+        "wires": [
+            [
+                "40d657f2.bcbd08"
+            ],
+            [
+                "25bee3f.514d01c"
+            ]
+        ]
+    },
+    {
+        "id": "40d657f2.bcbd08",
+        "type": "change",
+        "z": "5a182d46.cf2834",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Dvere do garáže odomknuté",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 920,
+        "y": 1300,
+        "wires": [
+            [
+                "a220da1a.c3b0a8"
+            ]
+        ]
+    },
+    {
+        "id": "25bee3f.514d01c",
+        "type": "change",
+        "z": "5a182d46.cf2834",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Dvere do garáže zamknuté",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 920,
+        "y": 1360,
+        "wires": [
+            [
+                "a220da1a.c3b0a8"
+            ]
+        ]
+    },
+    {
+        "id": "fae1318d.07d5b",
+        "type": "comment",
+        "z": "5a182d46.cf2834",
+        "name": "Dvere z garáže",
+        "info": "",
+        "x": 160,
+        "y": 1060,
+        "wires": []
+    },
+    {
+        "id": "3b118000.5c5c3",
+        "type": "ui_template",
+        "z": "5a182d46.cf2834",
+        "group": "3b240061.460c8",
+        "name": "Unlock_3",
+        "order": 11,
+        "width": 4,
+        "height": 1,
+        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n</style>\n<md-button class=\"filled rounded\"\n   style=\"background-color:#30833A\"\n    ng-click=\"send({payload: 'unlock', topic: 'zd'})\"> \n    Odomknúť\n</md-button>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 200,
+        "y": 1600,
+        "wires": [
+            [
+                "6cbe20eb.abfe6",
+                "e9b012b7.52dca"
+            ]
+        ]
+    },
+    {
+        "id": "22230dc8.842372",
+        "type": "ui_template",
+        "z": "5a182d46.cf2834",
+        "group": "3b240061.460c8",
+        "name": "Lock_3",
+        "order": 12,
+        "width": 4,
+        "height": 1,
+        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n</style>\n<md-button class=\"filled rounded\"\n   style=\"background-color:red\"\n    ng-click=\"send({payload: 'lock', topic: 'zd'})\"> \n    Zamknúť\n</md-button>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 200,
+        "y": 1660,
+        "wires": [
+            [
+                "6cbe20eb.abfe6",
+                "e9b012b7.52dca"
+            ]
+        ]
+    },
+    {
+        "id": "6cbe20eb.abfe6",
+        "type": "ui_led",
+        "z": "5a182d46.cf2834",
+        "order": 10,
+        "group": "3b240061.460c8",
+        "width": 4,
+        "height": 1,
+        "label": "Okná",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "lock",
+                "valueType": "str"
+            },
+            {
+                "color": "#008000",
+                "value": "unlock",
+                "valueType": "str"
+            },
+            {
+                "color": "#008000",
+                "value": "true",
+                "valueType": "bool"
+            },
+            {
+                "color": "#ff0000",
+                "value": "false",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Led_3",
+        "x": 410,
+        "y": 1620,
+        "wires": []
+    },
+    {
+        "id": "de902d20.3bbe8",
+        "type": "mqtt in",
+        "z": "5a182d46.cf2834",
+        "name": "",
+        "topic": "home/okna",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "30f5ccb2.518334",
+        "inputs": 0,
+        "x": 120,
+        "y": 1760,
+        "wires": [
+            [
+                "e9b012b7.52dca"
+            ]
+        ]
+    },
+    {
+        "id": "e9b012b7.52dca",
+        "type": "function",
+        "z": "5a182d46.cf2834",
+        "name": "",
+        "func": "var jed = msg.payload;\nif(jed == \"unlock\" || jed == \"true\"){\n    global.set(\"OknoLock\",false);\n    msg.payload=true;\n}else if(jed == \"lock\" || jed == \"false\"){\n    global.set(\"OknoLock\",true);\n    msg.payload=false;\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 1760,
+        "wires": [
+            [
+                "2b3b8839.0c1c78",
+                "6cbe20eb.abfe6",
+                "4f0e1051.74cc9"
+            ]
+        ]
+    },
+    {
+        "id": "2b3b8839.0c1c78",
+        "type": "switch",
+        "z": "5a182d46.cf2834",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "true"
+            },
+            {
+                "t": "false"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 610,
+        "y": 1760,
+        "wires": [
+            [
+                "8ae1d091.4974d"
+            ],
+            [
+                "da506cf7.3a78b"
+            ]
+        ]
+    },
+    {
+        "id": "8ae1d091.4974d",
+        "type": "change",
+        "z": "5a182d46.cf2834",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Okná v dome odomknuté",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 800,
+        "y": 1740,
+        "wires": [
+            [
+                "fd467e3.97a068"
+            ]
+        ]
+    },
+    {
+        "id": "da506cf7.3a78b",
+        "type": "change",
+        "z": "5a182d46.cf2834",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Okná v dome zamknuté",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 800,
+        "y": 1780,
+        "wires": [
+            [
+                "fd467e3.97a068"
+            ]
+        ]
+    },
+    {
+        "id": "3224b942.beed36",
+        "type": "comment",
+        "z": "5a182d46.cf2834",
+        "name": "Okna",
+        "info": "",
+        "x": 110,
+        "y": 1500,
+        "wires": []
+    },
+    {
+        "id": "4f0e1051.74cc9",
+        "type": "mqtt out",
+        "z": "5a182d46.cf2834",
+        "name": "Okno_zabezpecenie",
+        "topic": "home/okno_zabezpecenie",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "30f5ccb2.518334",
+        "x": 635.8958129882812,
+        "y": 1930.2222900390625,
+        "wires": []
+    },
+    {
+        "id": "a220da1a.c3b0a8",
+        "type": "debug",
+        "z": "5a182d46.cf2834",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1150,
+        "y": 1320,
+        "wires": []
+    },
+    {
+        "id": "fd467e3.97a068",
+        "type": "debug",
+        "z": "5a182d46.cf2834",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1030,
+        "y": 1740,
+        "wires": []
     },
     {
         "id": "51e511d5.93f7c",
