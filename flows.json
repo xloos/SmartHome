@@ -196,7 +196,7 @@
         "site": {
             "name": "SmartHome",
             "hideToolbar": "false",
-            "allowSwipe": "true",
+            "allowSwipe": "false",
             "lockMenu": "icon",
             "allowTempTheme": "true",
             "dateFormat": "DD/MM/YYYY",
@@ -1098,77 +1098,6 @@
         ]
     },
     {
-        "id": "f662011c.5b26d",
-        "type": "comment",
-        "z": "d4742671.796ed8",
-        "name": "Senzor intenzity svetla v loznici",
-        "info": "",
-        "x": 490,
-        "y": 940,
-        "wires": []
-    },
-    {
-        "id": "b48865e1.241518",
-        "type": "mqtt out",
-        "z": "d4742671.796ed8",
-        "name": "Intenzita_spalen",
-        "topic": "home/spalen/intenzita",
-        "qos": "0",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "30f5ccb2.518334",
-        "x": 910,
-        "y": 1040,
-        "wires": []
-    },
-    {
-        "id": "b392a94.9ba5358",
-        "type": "function",
-        "z": "d4742671.796ed8",
-        "name": "",
-        "func": "var hod = global.get(\"zarovka\");\nvar rozmer = 15;\nvar vysl = 250;\nvar poc = 0;\nvar kon = 0;\nif(hod == 3){\n    poc=(205*4)/rozmer;\n    kon = (100*300)/poc;\n    if(kon > 100){\n        msg.payload=100;\n    }else{\n        msg.payload=kon.toFixed(2);\n    }\n}else if(hod == 5){\n    poc=(425*4)/rozmer;\n        kon = (100*300)/poc;\n    if(kon > 100){\n        msg.payload=100;\n    }else{\n        msg.payload=kon.toFixed(2);\n    }\n    \n}else if(hod == 9){\n    poc=(720*4)/rozmer;\n        kon = (100*300)/poc;\n    if(kon > 100){\n        msg.payload=100;\n    }else{\n        msg.payload=kon.toFixed(2);\n    }\n    \n}else if(hod == 15){\n    poc=(1400*4)/rozmer;\n        kon = (100*300)/poc;\n    if(kon > 100){\n        msg.payload=100;\n    }else{\n        msg.payload=kon.toFixed(2);\n    }\n}\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 640,
-        "y": 1040,
-        "wires": [
-            [
-                "b48865e1.241518"
-            ]
-        ]
-    },
-    {
-        "id": "9ed9fe43.3303d",
-        "type": "inject",
-        "z": "d4742671.796ed8",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "5",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 440,
-        "y": 1040,
-        "wires": [
-            [
-                "b392a94.9ba5358"
-            ]
-        ]
-    },
-    {
         "id": "cf144cdc.f7a69",
         "type": "mqtt out",
         "z": "d4742671.796ed8",
@@ -2017,6 +1946,246 @@
         "x": 1340,
         "y": 400,
         "wires": []
+    },
+    {
+        "id": "8809d5a91d1d1acd",
+        "type": "ui_gauge",
+        "z": "d4742671.796ed8",
+        "name": "",
+        "group": "de2505cd.6c5ad8",
+        "order": 31,
+        "width": 0,
+        "height": 0,
+        "gtype": "donut",
+        "title": "Spotreba v KWH",
+        "label": "KWh",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "1000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 2290,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "3ac369b788bf32b1",
+        "type": "function",
+        "z": "d4742671.796ed8",
+        "name": "",
+        "func": "var foo = msg.payload;\nvar value = flow.get(\"hodnota\");\nflow.set(\"spotreba\",flow.get(\"spotreba\") + value);\nmsg.payload = flow.get(\"spotreba\")/20000;\nreturn msg;\n\n\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1940,
+        "y": 640,
+        "wires": [
+            [
+                "9f6ec3b9a270794d",
+                "8809d5a91d1d1acd"
+            ]
+        ]
+    },
+    {
+        "id": "f2071495acb1b6c0",
+        "type": "function",
+        "z": "d4742671.796ed8",
+        "name": "",
+        "func": "msg.payload = 0;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1440,
+        "y": 640,
+        "wires": [
+            [
+                "3ac369b788bf32b1"
+            ]
+        ]
+    },
+    {
+        "id": "95594c156a12ea99",
+        "type": "inject",
+        "z": "d4742671.796ed8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1210,
+        "y": 640,
+        "wires": [
+            [
+                "f2071495acb1b6c0"
+            ]
+        ]
+    },
+    {
+        "id": "9f6ec3b9a270794d",
+        "type": "delay",
+        "z": "d4742671.796ed8",
+        "name": "",
+        "pauseType": "queue",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "3",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 1930,
+        "y": 720,
+        "wires": [
+            [
+                "3ac369b788bf32b1"
+            ]
+        ]
+    },
+    {
+        "id": "f25b74250f5405be",
+        "type": "inject",
+        "z": "d4742671.796ed8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1150,
+        "y": 360,
+        "wires": [
+            [
+                "65f129173c079587"
+            ]
+        ]
+    },
+    {
+        "id": "65f129173c079587",
+        "type": "function",
+        "z": "d4742671.796ed8",
+        "name": "",
+        "func": "msg.payload = 0;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1380,
+        "y": 360,
+        "wires": [
+            [
+                "442171be.acd03"
+            ]
+        ]
+    },
+    {
+        "id": "a5932cc6726ead77",
+        "type": "change",
+        "z": "d4742671.796ed8",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "hodnota",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2020,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b008ddf76acab0b9",
+        "type": "function",
+        "z": "d4742671.796ed8",
+        "name": "",
+        "func": "msg.payload = 0;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1800,
+        "y": 340,
+        "wires": [
+            [
+                "a5932cc6726ead77"
+            ]
+        ]
+    },
+    {
+        "id": "7eb5d345876cb94f",
+        "type": "inject",
+        "z": "d4742671.796ed8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 1630,
+        "y": 340,
+        "wires": [
+            [
+                "b008ddf76acab0b9"
+            ]
+        ]
     },
     {
         "id": "5590fe46.d200c",
@@ -4624,6 +4793,7 @@
         "randomLast": "5",
         "randomUnits": "seconds",
         "drop": true,
+        "allowrate": false,
         "outputs": 1,
         "x": 1230,
         "y": 1880,
