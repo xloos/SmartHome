@@ -38,7 +38,7 @@
     {
         "id": "52746a71.334bd4",
         "type": "tab",
-        "label": "Ovladanie_teploty",
+        "label": "Ovladanie_teploty_a_okien",
         "disabled": false,
         "info": ""
     },
@@ -110,6 +110,7 @@
         "type": "ui_tab",
         "name": "Lights control",
         "icon": "fa-lightbulb-o",
+        "order": 2,
         "disabled": false,
         "hidden": false
     },
@@ -185,16 +186,17 @@
                 }
             },
             "angularTheme": {
-                "primary": "indigo",
-                "accents": "blue",
+                "primary": "deep-orange",
+                "accents": "orange",
                 "warn": "red",
-                "background": "grey"
+                "background": "teal",
+                "palette": "dark"
             }
         },
         "site": {
-            "name": "SmartHome Dashboard",
+            "name": "SmartHome",
             "hideToolbar": "false",
-            "allowSwipe": "false",
+            "allowSwipe": "true",
             "lockMenu": "icon",
             "allowTempTheme": "true",
             "dateFormat": "DD/MM/YYYY",
@@ -225,6 +227,7 @@
         "type": "ui_tab",
         "name": "Security control",
         "icon": "fa-lock",
+        "order": 1,
         "disabled": false,
         "hidden": false
     },
@@ -236,17 +239,17 @@
         "order": 1,
         "disp": true,
         "width": "12",
-        "collapse": true
+        "collapse": false
     },
     {
         "id": "4da70d94.c48a04",
         "type": "ui_group",
-        "name": "Security - motion",
+        "name": "Zabezpecenie - senzory pohybu",
         "tab": "b7eecb1a.674ce8",
         "order": 2,
         "disp": true,
         "width": "6",
-        "collapse": false
+        "collapse": true
     },
     {
         "id": "f83f7d8f.6fd29",
@@ -377,7 +380,7 @@
     {
         "id": "a1f4275a.077578",
         "type": "ui_group",
-        "name": "Windows",
+        "name": "Okná",
         "tab": "4fb78e1bf9b38144",
         "order": 1,
         "disp": true,
@@ -387,7 +390,7 @@
     {
         "id": "72b45707.294b78",
         "type": "ui_group",
-        "name": "Heating",
+        "name": "Kúrenie",
         "tab": "7f07accb.75be34",
         "order": 1,
         "disp": true,
@@ -399,6 +402,7 @@
         "type": "ui_tab",
         "name": "Temperature control",
         "icon": "fa-thermometer-three-quarters",
+        "order": 3,
         "disabled": false,
         "hidden": false
     },
@@ -505,7 +509,7 @@
         "id": "4fb78e1bf9b38144",
         "type": "ui_tab",
         "name": "Window control",
-        "icon": "dashboard",
+        "icon": "fa-building ",
         "order": 4,
         "disabled": false,
         "hidden": false
@@ -513,30 +517,12 @@
     {
         "id": "d7418ebef47720b5",
         "type": "ui_group",
-        "name": "Set auto temperature at specific time",
+        "name": "Nastavenie automatickej teploty v určitý čas",
         "tab": "7f07accb.75be34",
         "order": 2,
         "disp": true,
-        "width": 9,
+        "width": "9",
         "collapse": true
-    },
-    {
-        "id": "83018076ab07b822",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "72b45707.294b78",
-        "order": 6,
-        "width": 6,
-        "height": 1
-    },
-    {
-        "id": "6a933aa3d39711da",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "72b45707.294b78",
-        "order": 7,
-        "width": 6,
-        "height": 1
     },
     {
         "id": "2a745e6b.07df92",
@@ -603,7 +589,17 @@
         "height": 1
     },
     {
-        "id": "ddca477d8ad72123",
+        "id": "026ff6b53224193f",
+        "type": "ui_group",
+        "name": "Zabezpecenie - senzory zvuku",
+        "tab": "b7eecb1a.674ce8",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": true
+    },
+    {
+        "id": "e56ef1e65c22d6a8",
         "type": "ui_spacer",
         "name": "spacer",
         "group": "3b240061.460c8",
@@ -612,32 +608,22 @@
         "height": 1
     },
     {
-        "id": "19858ae10bf9ece8",
+        "id": "fc7dad8777333cff",
         "type": "ui_spacer",
         "name": "spacer",
-        "group": "3b240061.460c8",
-        "order": 17,
-        "width": 3,
+        "group": "72b45707.294b78",
+        "order": 6,
+        "width": 6,
         "height": 1
     },
     {
-        "id": "d9ec8b8693dbf06c",
+        "id": "09a7ad9d6c1e1388",
         "type": "ui_spacer",
         "name": "spacer",
-        "group": "3b240061.460c8",
-        "order": 19,
-        "width": 2,
+        "group": "72b45707.294b78",
+        "order": 7,
+        "width": 6,
         "height": 1
-    },
-    {
-        "id": "026ff6b53224193f",
-        "type": "ui_group",
-        "name": "Zabezpecenie - senzory zvuku",
-        "tab": "b7eecb1a.674ce8",
-        "order": 3,
-        "disp": true,
-        "width": "6",
-        "collapse": false
     },
     {
         "id": "ad51e5f3.451568",
@@ -2734,7 +2720,7 @@
         "label": "Povoliť zvukové senzory",
         "tooltip": "",
         "group": "026ff6b53224193f",
-        "order": 0,
+        "order": 1,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -2763,7 +2749,7 @@
         "id": "81df208a9400f9a0",
         "type": "ui_led",
         "z": "f9b1232ab3c774b3",
-        "order": 1,
+        "order": 2,
         "group": "026ff6b53224193f",
         "width": 0,
         "height": 0,
@@ -2794,7 +2780,7 @@
         "id": "665b5eb9a760d835",
         "type": "ui_led",
         "z": "f9b1232ab3c774b3",
-        "order": 2,
+        "order": 3,
         "group": "026ff6b53224193f",
         "width": 0,
         "height": 0,
@@ -3368,7 +3354,7 @@
             }
         ],
         "allowColorForValueInMessage": false,
-        "shape": "circle",
+        "shape": "square",
         "showGlow": true,
         "name": "Led_uzivatel",
         "x": 730,
@@ -3772,7 +3758,7 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "Open",
+                "to": "Otvorené",
                 "tot": "str"
             }
         ],
@@ -3850,7 +3836,7 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "Closed",
+                "to": "Zatvorené",
                 "tot": "str"
             }
         ],
@@ -4074,10 +4060,10 @@
         "width": 0,
         "height": 0,
         "name": "",
-        "label": "Window state",
+        "label": "Stav okien",
         "format": "{{msg.payload}}",
         "layout": "col-center",
-        "x": 1520,
+        "x": 1510,
         "y": 260,
         "wires": []
     },
@@ -4104,7 +4090,7 @@
         "width": 0,
         "height": 0,
         "gtype": "gage",
-        "title": "Temperature",
+        "title": "Teplota",
         "label": "°C",
         "format": "{{value}}",
         "min": 0,
@@ -4116,7 +4102,7 @@
         ],
         "seg1": "18",
         "seg2": "24",
-        "x": 1610,
+        "x": 1600,
         "y": 640,
         "wires": []
     },
@@ -4129,7 +4115,7 @@
         "order": 1,
         "width": 2,
         "height": 1,
-        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n</style>\n<md-button class=\"filled rounded\"\n   style=\"background-color:#30833A\"\n    ng-click=\"send({payload: 'on', topic: 'dsh'})\"> \n    ON\n</md-button>",
+        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n</style>\n<md-button class=\"filled rounded\"\n   style=\"background-color:#30833A\"\n    ng-click=\"send({payload: 'on', topic: 'dsh'})\"> \n    ZAPNÚŤ\n</md-button>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
@@ -4175,7 +4161,7 @@
         "order": 3,
         "width": 2,
         "height": 1,
-        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n    \n.nr-dashboard-template {\n      padding: 0;\n      margin: 0;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n  .highlight {\n    background-color: yellow !important;\n}\n \n.images {\n    background-size: 100% 100%;\n    background-repeat: no-repeat; \n    }\n     \n.highlight-image {\n    background-image: var(--myHighlight) !important;\n}\n</style>\n<md-button class=\"vibrate filled touched rounded\"\n   style=\"background-color:#C9342F\"\n    ng-click=\"send({payload: 'off', topic: 'dsh'})\"> \n    OFF\n</md-button>",
+        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n    \n.nr-dashboard-template {\n      padding: 0;\n      margin: 0;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n  .highlight {\n    background-color: yellow !important;\n}\n \n.images {\n    background-size: 100% 100%;\n    background-repeat: no-repeat; \n    }\n     \n.highlight-image {\n    background-image: var(--myHighlight) !important;\n}\n</style>\n<md-button class=\"vibrate filled touched rounded\"\n   style=\"background-color:#C9342F\"\n    ng-click=\"send({payload: 'off', topic: 'dsh'})\"> \n    VYPNÚŤ\n</md-button>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
@@ -4267,10 +4253,10 @@
         "z": "52746a71.334bd4",
         "group": "a1f4275a.077578",
         "name": "Kuchyne_template_3",
-        "order": 1,
+        "order": 3,
         "width": 2,
         "height": 1,
-        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n    \n.nr-dashboard-template {\n      padding: 0;\n      margin: 0;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n  .highlight {\n    background-color: yellow !important;\n}\n \n.images {\n    background-size: 100% 100%;\n    background-repeat: no-repeat; \n    }\n     \n.highlight-image {\n    background-image: var(--myHighlight) !important;\n}\n</style>\n<md-button class=\"vibrate filled touched rounded\"\n   style=\"background-color:#C9342F\"\n    ng-click=\"send({payload: 'off', topic: 'dsh'})\"> \n    Close\n</md-button>",
+        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n    \n.nr-dashboard-template {\n      padding: 0;\n      margin: 0;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n  .highlight {\n    background-color: yellow !important;\n}\n \n.images {\n    background-size: 100% 100%;\n    background-repeat: no-repeat; \n    }\n     \n.highlight-image {\n    background-image: var(--myHighlight) !important;\n}\n</style>\n<md-button class=\"vibrate filled touched rounded\"\n   style=\"background-color:#C9342F\"\n    ng-click=\"send({payload: 'off', topic: 'dsh'})\"> \n    ZATVORIŤ\n</md-button>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
@@ -4290,7 +4276,7 @@
         "z": "52746a71.334bd4",
         "group": "a1f4275a.077578",
         "name": "Kuchyne_template_2",
-        "order": 3,
+        "order": 2,
         "width": 2,
         "height": 1,
         "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n  \n.highlight {\n    background-color: yellow !important;\n}\n \n</style>\n<md-button class=\"filled rounded\"\n   style=\"background-color:#61BCE1\"\n    ng-click=\"send({payload: 'auto', topic: 'dsh'})\"> \n    AUTO\n</md-button>",
@@ -4313,10 +4299,10 @@
         "z": "52746a71.334bd4",
         "group": "a1f4275a.077578",
         "name": "Kuchyne_template_1",
-        "order": 2,
+        "order": 1,
         "width": 2,
         "height": 1,
-        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n     \n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n</style>\n<md-button class=\"filled rounded\"\n   style=\"background-color:#30833A\"\n    ng-click=\"send({payload: 'on', topic: 'dsh'})\"> \n    Open\n</md-button>",
+        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n     \n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n</style>\n<md-button class=\"filled rounded\"\n   style=\"background-color:#30833A\"\n    ng-click=\"send({payload: 'on', topic: 'dsh'})\"> \n    OTVORIŤ\n</md-button>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
@@ -4718,7 +4704,7 @@
         "type": "ui_numeric",
         "z": "52746a71.334bd4",
         "name": "",
-        "label": "Set auto temperature ",
+        "label": "Automatická teplota",
         "tooltip": "",
         "group": "72b45707.294b78",
         "order": 5,
@@ -4732,7 +4718,7 @@
         "min": 0,
         "max": "35",
         "step": 1,
-        "x": 1120,
+        "x": 1110,
         "y": 2120,
         "wires": [
             [
@@ -4843,7 +4829,7 @@
         "type": "function",
         "z": "52746a71.334bd4",
         "name": "",
-        "func": "var pom = msg.payload;\nif(msg.payload < 50) {\n    flow.set(\"MorninTemp\",pom);\n}\nif(msg.payload > 50) {\n    msg.payload = flow.get(\"MorninTemp\");\nreturn msg;\n}\n",
+        "func": "var pom = msg.payload;\nvar autoteplota = global.get(\"timetemp\");\nif(autoteplota == true){\nif(msg.payload < 50) {\n    flow.set(\"MorninTemp\",pom);\n}\nif(msg.payload > 50) {\n    msg.payload = flow.get(\"MorninTemp\");\nreturn msg;\n}\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -4865,7 +4851,7 @@
         "label": " 06:00  ",
         "tooltip": "",
         "group": "d7418ebef47720b5",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -4917,7 +4903,7 @@
         "type": "function",
         "z": "52746a71.334bd4",
         "name": "",
-        "func": "var pom = msg.payload;\nif(msg.payload < 50) {\n    flow.set(\"MorninTemp\",pom);\n}\nif(msg.payload > 50) {\n    msg.payload = flow.get(\"MorninTemp\");\nreturn msg;\n}\n",
+        "func": "var pom = msg.payload;\nvar autoteplota = global.get(\"timetemp\");\nif(autoteplota == true){\nif(msg.payload < 50) {\n    flow.set(\"MorninTemp\",pom);\n}\nif(msg.payload > 50) {\n    msg.payload = flow.get(\"MorninTemp\");\nreturn msg;\n}\n}",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -4939,7 +4925,7 @@
         "label": " 09:00 ",
         "tooltip": "",
         "group": "d7418ebef47720b5",
-        "order": 2,
+        "order": 3,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -4991,7 +4977,7 @@
         "type": "function",
         "z": "52746a71.334bd4",
         "name": "",
-        "func": "var pom = msg.payload;\nif(msg.payload < 50) {\n    flow.set(\"MorninTemp\",pom);\n}\nif(msg.payload > 50) {\n    msg.payload = flow.get(\"MorninTemp\");\nreturn msg;\n}\n",
+        "func": "var pom = msg.payload;\nvar autoteplota = global.get(\"timetemp\");\nif(autoteplota == true){\nif(msg.payload < 50) {\n    flow.set(\"MorninTemp\",pom);\n}\nif(msg.payload > 50) {\n    msg.payload = flow.get(\"MorninTemp\");\nreturn msg;\n}\n}\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -5013,7 +4999,7 @@
         "label": "14:00 ",
         "tooltip": "",
         "group": "d7418ebef47720b5",
-        "order": 3,
+        "order": 4,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -5065,7 +5051,7 @@
         "type": "function",
         "z": "52746a71.334bd4",
         "name": "",
-        "func": "var pom = msg.payload;\nif(msg.payload < 50) {\n    flow.set(\"MorninTemp\",pom);\n}\nif(msg.payload > 50) {\n    msg.payload = flow.get(\"MorninTemp\");\nreturn msg;\n}\n",
+        "func": "var pom = msg.payload;\nvar autoteplota = global.get(\"timetemp\");\nif(autoteplota == true){\nif(msg.payload < 50) {\n    flow.set(\"MorninTemp\",pom);\n}\nif(msg.payload > 50) {\n    msg.payload = flow.get(\"MorninTemp\");\nreturn msg;\n}\n}\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -5087,7 +5073,7 @@
         "label": "19:00 ",
         "tooltip": "  ",
         "group": "d7418ebef47720b5",
-        "order": 4,
+        "order": 5,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -5179,7 +5165,7 @@
         "type": "function",
         "z": "52746a71.334bd4",
         "name": "",
-        "func": "var pom = msg.payload;\nif(msg.payload < 50) {\n    flow.set(\"MorninTemp\",pom);\n}\nif(msg.payload > 50) {\n    msg.payload = flow.get(\"MorninTemp\");\nreturn msg;\n}\n",
+        "func": "var pom = msg.payload;\nvar autoteplota = global.get(\"timetemp\");\nif(autoteplota == true){\nif(msg.payload < 50) {\n    flow.set(\"MorninTemp\",pom);\n}\nif(msg.payload > 50) {\n    msg.payload = flow.get(\"MorninTemp\");\nreturn msg;\n}\n}\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -5201,7 +5187,7 @@
         "label": "22:00 ",
         "tooltip": "",
         "group": "d7418ebef47720b5",
-        "order": 5,
+        "order": 6,
         "width": 0,
         "height": 0,
         "passthru": true,
@@ -5235,7 +5221,7 @@
         "z": "52746a71.334bd4",
         "name": "",
         "group": "72b45707.294b78",
-        "order": 8,
+        "order": 9,
         "width": 0,
         "height": 0,
         "label": "Zobrazenie teploty v čase",
@@ -5293,7 +5279,7 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 450,
+        "x": 690,
         "y": 2000,
         "wires": [
             [
@@ -5312,7 +5298,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 640,
+        "x": 880,
         "y": 2000,
         "wires": [
             [
@@ -5378,7 +5364,7 @@
         "z": "52746a71.334bd4",
         "name": "Nastavenie automatickej teploty na priemernú teplotu",
         "info": "",
-        "x": 590,
+        "x": 790,
         "y": 1940,
         "wires": []
     },
@@ -5390,6 +5376,74 @@
         "info": "",
         "x": 190,
         "y": 2220,
+        "wires": []
+    },
+    {
+        "id": "85af33fb9ebd0c1c",
+        "type": "change",
+        "z": "52746a71.334bd4",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "timetemp",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 270,
+        "y": 1980,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3f7e1e226e91ebe2",
+        "type": "ui_switch",
+        "z": "52746a71.334bd4",
+        "name": "",
+        "label": "Povoliť automatické nastavovanie teploty v učitý čas",
+        "tooltip": "",
+        "group": "d7418ebef47720b5",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "x": 200,
+        "y": 1900,
+        "wires": [
+            [
+                "85af33fb9ebd0c1c"
+            ]
+        ]
+    },
+    {
+        "id": "7d748ff19b7da5e8",
+        "type": "comment",
+        "z": "52746a71.334bd4",
+        "name": "Zapínanie alebo vypínanie automatickej zmeny teploty v určitý čas",
+        "info": "",
+        "x": 240,
+        "y": 1840,
         "wires": []
     },
     {
