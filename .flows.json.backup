@@ -9,7 +9,7 @@
     {
         "id": "d4742671.796ed8",
         "type": "tab",
-        "label": "Senzory_pohybu",
+        "label": "Senzory_pohybu_a_osvetlenia",
         "disabled": false,
         "info": ""
     },
@@ -66,7 +66,7 @@
     {
         "id": "35ef67ac.997568",
         "type": "tab",
-        "label": "Spalen",
+        "label": "Izba",
         "disabled": false,
         "info": ""
     },
@@ -186,11 +186,10 @@
                 }
             },
             "angularTheme": {
-                "primary": "deep-orange",
-                "accents": "orange",
+                "primary": "indigo",
+                "accents": "blue",
                 "warn": "red",
-                "background": "teal",
-                "palette": "dark"
+                "background": "grey"
             }
         },
         "site": {
@@ -215,11 +214,11 @@
     {
         "id": "de2505cd.6c5ad8",
         "type": "ui_group",
-        "name": "Lights",
+        "name": "Ovládanie svetiel",
         "tab": "93e22d43.aaa6d",
         "order": 1,
         "disp": true,
-        "width": 7,
+        "width": 17,
         "collapse": false
     },
     {
@@ -535,60 +534,6 @@
         "collapse": true
     },
     {
-        "id": "d6e6d6c97574a855",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "de2505cd.6c5ad8",
-        "order": 1,
-        "width": 7,
-        "height": 1
-    },
-    {
-        "id": "31678b924c7716cb",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "de2505cd.6c5ad8",
-        "order": 10,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "74e6f9bb9e5d733f",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "de2505cd.6c5ad8",
-        "order": 15,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "8127184623941ad4",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "de2505cd.6c5ad8",
-        "order": 20,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "b5768e022b562569",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "de2505cd.6c5ad8",
-        "order": 25,
-        "width": 1,
-        "height": 1
-    },
-    {
-        "id": "b8ea8881f6aa7fb4",
-        "type": "ui_spacer",
-        "name": "spacer",
-        "group": "de2505cd.6c5ad8",
-        "order": 30,
-        "width": 1,
-        "height": 1
-    },
-    {
         "id": "026ff6b53224193f",
         "type": "ui_group",
         "name": "Zabezpecenie - senzory zvuku",
@@ -624,6 +569,16 @@
         "order": 7,
         "width": 6,
         "height": 1
+    },
+    {
+        "id": "7260b6f54d8e2e0a",
+        "type": "ui_group",
+        "name": "Tienenie",
+        "tab": "4fb78e1bf9b38144",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
     },
     {
         "id": "ad51e5f3.451568",
@@ -1739,8 +1694,8 @@
         ],
         "repeat": "",
         "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
+        "once": true,
+        "onceDelay": "0.3",
         "topic": "",
         "payload": "5",
         "payloadType": "num",
@@ -1870,7 +1825,7 @@
         "type": "function",
         "z": "d4742671.796ed8",
         "name": "",
-        "func": "var a = msg.payload;\nvar glb = global.get(\"zarovka\") || 0;\nvar flw = flow.get(\"hodnota\") || 0;\nmsg.payload = flw;\nif(a == \"Zapnuta\"){\n    flow.set(\"hodnota\",(flw + glb));\n}else if (a == \"Vypnuta\"){\n    if((flw - glb) <= 0){\n    flow.set(\"hodnota\",0);\n    }else{\n    flow.set(\"hodnota\",(flw - glb));\n    }\n}\nreturn msg;",
+        "func": "var a = msg.payload;\nvar glb = global.get(\"zarovka\") || 0;\nvar flw = flow.get(\"hodnota\") || 0;\nmsg.payload = flw;\nif(a == \"Zapnute\"){\n    flow.set(\"hodnota\",(flw + glb));\n}else if (a == \"Vypnute\"){\n    if((flw - glb) <= 0){\n    flow.set(\"hodnota\",0);\n    }else{\n    flow.set(\"hodnota\",(flw - glb));\n    }\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -1917,11 +1872,11 @@
         "z": "d4742671.796ed8",
         "name": "",
         "group": "de2505cd.6c5ad8",
-        "order": 31,
+        "order": 26,
         "width": 0,
         "height": 0,
         "gtype": "gage",
-        "title": "Spotreba - osvetlenie",
+        "title": "Aktuálna spotreba svietidiel",
         "label": "W",
         "format": "{{value}}",
         "min": 0,
@@ -1933,7 +1888,7 @@
         ],
         "seg1": "",
         "seg2": "",
-        "x": 1940,
+        "x": 1960,
         "y": 480,
         "wires": []
     },
@@ -1941,10 +1896,10 @@
         "id": "fd5ee523.fbbf78",
         "type": "comment",
         "z": "d4742671.796ed8",
-        "name": "Obsluha gauge",
+        "name": "Zobrazenie aktualnej spotreby",
         "info": "",
-        "x": 1340,
-        "y": 400,
+        "x": 1380,
+        "y": 420,
         "wires": []
     },
     {
@@ -1953,15 +1908,15 @@
         "z": "d4742671.796ed8",
         "name": "",
         "group": "de2505cd.6c5ad8",
-        "order": 31,
+        "order": 27,
         "width": 0,
         "height": 0,
-        "gtype": "donut",
-        "title": "Spotreba v KWH",
-        "label": "KWh",
-        "format": "{{value}}",
+        "gtype": "compass",
+        "title": "Celková spotreba svietidiel v kWh",
+        "label": "kWh",
+        "format": "{{value|number:5}}",
         "min": 0,
-        "max": "1000",
+        "max": "33",
         "colors": [
             "#00b500",
             "#e6e600",
@@ -1969,89 +1924,16 @@
         ],
         "seg1": "",
         "seg2": "",
-        "x": 2290,
+        "x": 2340,
         "y": 640,
         "wires": []
-    },
-    {
-        "id": "e92e2d4d1ed3ae16",
-        "type": "change",
-        "z": "d4742671.796ed8",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "spotreba",
-                "pt": "flow",
-                "to": "payload",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 1630,
-        "y": 740,
-        "wires": [
-            []
-        ]
-    },
-    {
-        "id": "4e8c2a8506f7bd82",
-        "type": "function",
-        "z": "d4742671.796ed8",
-        "name": "",
-        "func": "msg.payload = 0;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 1360,
-        "y": 740,
-        "wires": [
-            [
-                "e92e2d4d1ed3ae16"
-            ]
-        ]
-    },
-    {
-        "id": "6738d5da07c9acfc",
-        "type": "inject",
-        "z": "d4742671.796ed8",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            },
-            {
-                "p": "topic",
-                "vt": "str"
-            }
-        ],
-        "repeat": "",
-        "crontab": "",
-        "once": true,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 1170,
-        "y": 740,
-        "wires": [
-            [
-                "4e8c2a8506f7bd82"
-            ]
-        ]
     },
     {
         "id": "3ac369b788bf32b1",
         "type": "function",
         "z": "d4742671.796ed8",
         "name": "",
-        "func": "var foo = msg.payload;\nvar value = flow.get(\"hodnota\");\nflow.set(\"spotreba\",flow.get(\"spotreba\") + value);\nmsg.payload = flow.get(\"spotreba\")/20000;\nreturn msg;\n\n\n\n\n",
+        "func": "var foo = msg.payload;\nif (isNaN(flow.get(\"spotreba\"))){\n     flow.set(\"spotreba\",0);\n}\nvar value = flow.get(\"hodnota\");\nflow.set(\"spotreba\",flow.get(\"spotreba\") + value);\nmsg.payload = flow.get(\"spotreba\")/1200000;\nreturn msg;\n\n\n\n\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -2259,6 +2141,16 @@
                 "b008ddf76acab0b9"
             ]
         ]
+    },
+    {
+        "id": "807bad2dbc0b466f",
+        "type": "comment",
+        "z": "d4742671.796ed8",
+        "name": "Zobrazenie celkovej spotreby v kWh",
+        "info": "",
+        "x": 1572,
+        "y": 570,
+        "wires": []
     },
     {
         "id": "5590fe46.d200c",
@@ -2955,6 +2847,36 @@
         "wires": []
     },
     {
+        "id": "e34208b40260a1fa",
+        "type": "inject",
+        "z": "99f59708.7c3cc8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 430,
+        "y": 1900,
+        "wires": [
+            [
+                "f4e54f36.55952",
+                "4a1fc6b6.c51dc8"
+            ]
+        ]
+    },
+    {
         "id": "4f10e457c7d3006e",
         "type": "ui_switch",
         "z": "f9b1232ab3c774b3",
@@ -3305,7 +3227,7 @@
         "labelAlignment": "left",
         "colorForValue": [
             {
-                "color": "#ff0000",
+                "color": "#808080",
                 "value": "false",
                 "valueType": "bool"
             },
@@ -3424,7 +3346,7 @@
         "labelAlignment": "left",
         "colorForValue": [
             {
-                "color": "#ff0000",
+                "color": "#808080",
                 "value": "false",
                 "valueType": "bool"
             },
@@ -3616,7 +3538,7 @@
         "labelAlignment": "left",
         "colorForValue": [
             {
-                "color": "#ff0000",
+                "color": "#808080",
                 "value": "false",
                 "valueType": "bool"
             },
@@ -3976,13 +3898,15 @@
         "id": "83f6d1dd.f33b8",
         "type": "mqtt in",
         "z": "52746a71.334bd4",
-        "name": "Okno_kuchyne",
+        "name": "Okno",
         "topic": "home/kuchyne/+",
         "qos": "0",
         "datatype": "auto",
         "broker": "30f5ccb2.518334",
+        "nl": false,
+        "rap": false,
         "inputs": 0,
-        "x": 100,
+        "x": 210,
         "y": 540,
         "wires": [
             [
@@ -4027,6 +3951,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 520,
         "y": 400,
         "wires": [
@@ -4115,7 +4040,7 @@
         "reduceInit": "",
         "reduceInitType": "num",
         "reduceFixup": "",
-        "x": 1350,
+        "x": 1370,
         "y": 480,
         "wires": [
             [
@@ -4305,8 +4230,8 @@
         "label": "Stav okien",
         "format": "{{msg.payload}}",
         "layout": "col-center",
-        "x": 1510,
-        "y": 260,
+        "x": 1490,
+        "y": 300,
         "wires": []
     },
     {
@@ -4317,6 +4242,11 @@
         "topic": "home/kuchyne/kurenie",
         "qos": "0",
         "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
         "broker": "30f5ccb2.518334",
         "x": 1190,
         "y": 1260,
@@ -4353,7 +4283,7 @@
         "type": "ui_template",
         "z": "52746a71.334bd4",
         "group": "72b45707.294b78",
-        "name": "Kuchyne_template_1",
+        "name": "Kurenie_tlacitko_zapnut",
         "order": 1,
         "width": 2,
         "height": 1,
@@ -4362,7 +4292,7 @@
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
-        "x": 320,
+        "x": 330,
         "y": 1200,
         "wires": [
             [
@@ -4376,7 +4306,7 @@
         "type": "ui_template",
         "z": "52746a71.334bd4",
         "group": "72b45707.294b78",
-        "name": "Kuchyne_template_2",
+        "name": "Kurenie_tlacitko_auto",
         "order": 2,
         "width": 2,
         "height": 1,
@@ -4399,7 +4329,7 @@
         "type": "ui_template",
         "z": "52746a71.334bd4",
         "group": "72b45707.294b78",
-        "name": "Kuchyne_template_3",
+        "name": "Kurenie_tlacitko_vypnut",
         "order": 3,
         "width": 2,
         "height": 1,
@@ -4408,7 +4338,7 @@
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
-        "x": 320,
+        "x": 330,
         "y": 1320,
         "wires": [
             [
@@ -4448,7 +4378,7 @@
         "allowColorForValueInMessage": false,
         "shape": "square",
         "showGlow": true,
-        "name": "Kuchyne_led",
+        "name": "Kurenie_led",
         "x": 130,
         "y": 1260,
         "wires": []
@@ -4463,6 +4393,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 740,
         "y": 1280,
         "wires": [
@@ -4481,6 +4412,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 920,
         "y": 1280,
         "wires": [
@@ -4494,7 +4426,7 @@
         "type": "ui_template",
         "z": "52746a71.334bd4",
         "group": "a1f4275a.077578",
-        "name": "Kuchyne_template_3",
+        "name": "Tlacitko_zatvorit",
         "order": 3,
         "width": 2,
         "height": 1,
@@ -4503,7 +4435,7 @@
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
-        "x": 220,
+        "x": 200,
         "y": 360,
         "wires": [
             [
@@ -4517,7 +4449,7 @@
         "type": "ui_template",
         "z": "52746a71.334bd4",
         "group": "a1f4275a.077578",
-        "name": "Kuchyne_template_2",
+        "name": "Tlacitko_auto",
         "order": 2,
         "width": 2,
         "height": 1,
@@ -4526,7 +4458,7 @@
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
-        "x": 220,
+        "x": 190,
         "y": 300,
         "wires": [
             [
@@ -4540,7 +4472,7 @@
         "type": "ui_template",
         "z": "52746a71.334bd4",
         "group": "a1f4275a.077578",
-        "name": "Kuchyne_template_1",
+        "name": "Tlacitko_otvorit",
         "order": 1,
         "width": 2,
         "height": 1,
@@ -4549,7 +4481,7 @@
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
-        "x": 220,
+        "x": 200,
         "y": 240,
         "wires": [
             [
@@ -4589,8 +4521,8 @@
         "allowColorForValueInMessage": false,
         "shape": "square",
         "showGlow": true,
-        "name": "Kuchyne_led",
-        "x": 510,
+        "name": "Okno_led",
+        "x": 500,
         "y": 220,
         "wires": []
     },
@@ -4604,6 +4536,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 540,
         "y": 860,
         "wires": [
@@ -4614,13 +4547,15 @@
         "id": "8ddad825.d6a2a8",
         "type": "mqtt in",
         "z": "52746a71.334bd4",
-        "name": "Teplota_kuchyne",
+        "name": "Teplota",
         "topic": "home/kuchyne/stav",
         "qos": "0",
         "datatype": "auto",
         "broker": "30f5ccb2.518334",
+        "nl": false,
+        "rap": false,
         "inputs": 0,
-        "x": 280,
+        "x": 250,
         "y": 860,
         "wires": [
             [
@@ -4633,9 +4568,9 @@
         "id": "7a95aebd.5b2dc",
         "type": "comment",
         "z": "52746a71.334bd4",
-        "name": "Ovladanie okna v kuchyni",
+        "name": "Ovladanie okna ",
         "info": "",
-        "x": 430,
+        "x": 400,
         "y": 100,
         "wires": []
     },
@@ -4669,6 +4604,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 680,
         "y": 400,
         "wires": [
@@ -4687,6 +4623,7 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 420,
         "y": 720,
         "wires": [
@@ -4995,6 +4932,8 @@
         "qos": "0",
         "datatype": "auto",
         "broker": "30f5ccb2.518334",
+        "nl": false,
+        "rap": false,
         "inputs": 0,
         "x": 90,
         "y": 680,
@@ -5688,6 +5627,492 @@
         "x": 240,
         "y": 1840,
         "wires": []
+    },
+    {
+        "id": "1a339d5e0f7a9d69",
+        "type": "function",
+        "z": "52746a71.334bd4",
+        "name": "",
+        "func": "var drh = msg.payload;\n    if(drh == \"on\"){\n        flow.set(\"Shading\",\"OPEN\");\n        return msg;\n    }else if(drh == \"off\"){\n        flow.set(\"Shading\",\"CLOSED\");\n        return msg;\n    }\n    else if(drh == \"auto\"){\n      flow.set(\"Shading\",\"AUTO\");\n      return msg;\n    }\n  \n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2380,
+        "y": 520,
+        "wires": [
+            [
+                "7ca57276284f7a78"
+            ]
+        ]
+    },
+    {
+        "id": "474abb1a8f0414f9",
+        "type": "ui_template",
+        "z": "52746a71.334bd4",
+        "group": "7260b6f54d8e2e0a",
+        "name": "Tienenie_tlacitko_zatvorit",
+        "order": 3,
+        "width": 2,
+        "height": 1,
+        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n    \n.nr-dashboard-template {\n      padding: 0;\n      margin: 0;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n  .highlight {\n    background-color: yellow !important;\n}\n \n.images {\n    background-size: 100% 100%;\n    background-repeat: no-repeat; \n    }\n     \n.highlight-image {\n    background-image: var(--myHighlight) !important;\n}\n</style>\n<md-button class=\"vibrate filled touched rounded\"\n   style=\"background-color:#C9342F\"\n    ng-click=\"send({payload: 'off', topic: 'dsh'})\"> \n    VYPNÚŤ\n</md-button>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 2090,
+        "y": 480,
+        "wires": [
+            [
+                "1a339d5e0f7a9d69",
+                "cfbfd7cbc8a72cb3"
+            ]
+        ]
+    },
+    {
+        "id": "2c7b8d219357d314",
+        "type": "ui_template",
+        "z": "52746a71.334bd4",
+        "group": "7260b6f54d8e2e0a",
+        "name": "Tienenie_tlacitko_auto",
+        "order": 2,
+        "width": 2,
+        "height": 1,
+        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n  \n.highlight {\n    background-color: yellow !important;\n}\n \n</style>\n<md-button class=\"filled rounded\"\n   style=\"background-color:#61BCE1\"\n    ng-click=\"send({payload: 'auto', topic: 'dsh'})\"> \n    AUTO\n</md-button>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 2080,
+        "y": 420,
+        "wires": [
+            [
+                "1a339d5e0f7a9d69",
+                "cfbfd7cbc8a72cb3"
+            ]
+        ]
+    },
+    {
+        "id": "97474ad524b78361",
+        "type": "ui_template",
+        "z": "52746a71.334bd4",
+        "group": "7260b6f54d8e2e0a",
+        "name": "Tienenie_tlacitko_otvorit",
+        "order": 1,
+        "width": 2,
+        "height": 1,
+        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n     \n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n</style>\n<md-button class=\"filled rounded\"\n   style=\"background-color:#30833A\"\n    ng-click=\"send({payload: 'on', topic: 'dsh'})\"> \n    ZAPNÚŤ\n</md-button>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": true,
+        "templateScope": "local",
+        "x": 2090,
+        "y": 360,
+        "wires": [
+            [
+                "1a339d5e0f7a9d69",
+                "cfbfd7cbc8a72cb3"
+            ]
+        ]
+    },
+    {
+        "id": "cfbfd7cbc8a72cb3",
+        "type": "ui_led",
+        "z": "52746a71.334bd4",
+        "order": 5,
+        "group": "7260b6f54d8e2e0a",
+        "width": 0,
+        "height": 0,
+        "label": "",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#ff0000",
+                "value": "off",
+                "valueType": "str"
+            },
+            {
+                "color": "#33dbdb",
+                "value": "auto",
+                "valueType": "str"
+            },
+            {
+                "color": "#008000",
+                "value": "on",
+                "valueType": "str"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "square",
+        "showGlow": true,
+        "name": "Tienenie_led",
+        "x": 2370,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "7ca57276284f7a78",
+        "type": "function",
+        "z": "52746a71.334bd4",
+        "name": "",
+        "func": "var pom = msg.payload;\nif(flow.get(\"Shading\")==\"OPEN\"){\n    msg.payload = \"true\";\n    return msg;\n}\nif(flow.get(\"Shading\")==\"CLOSED\"){\n    msg.payload = \"false\";\n    return msg;\n}\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2540,
+        "y": 520,
+        "wires": [
+            [
+                "3e7caf8fc31174a9"
+            ]
+        ]
+    },
+    {
+        "id": "3e7caf8fc31174a9",
+        "type": "switch",
+        "z": "52746a71.334bd4",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "false",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "true",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 2650,
+        "y": 620,
+        "wires": [
+            [
+                "03b76c899fc7c4a3"
+            ],
+            [
+                "efe33135906f03d9"
+            ]
+        ]
+    },
+    {
+        "id": "efe33135906f03d9",
+        "type": "change",
+        "z": "52746a71.334bd4",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Zapnuté",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2840,
+        "y": 580,
+        "wires": [
+            [
+                "aff784d49ebcadb7"
+            ]
+        ]
+    },
+    {
+        "id": "03b76c899fc7c4a3",
+        "type": "change",
+        "z": "52746a71.334bd4",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Vypnuté",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 2840,
+        "y": 640,
+        "wires": [
+            [
+                "2644a406c33aff83"
+            ]
+        ]
+    },
+    {
+        "id": "2644a406c33aff83",
+        "type": "change",
+        "z": "52746a71.334bd4",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Shading",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 3010,
+        "y": 640,
+        "wires": [
+            [
+                "b195e7a48cdd1311"
+            ]
+        ]
+    },
+    {
+        "id": "aff784d49ebcadb7",
+        "type": "change",
+        "z": "52746a71.334bd4",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "Shading",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 3010,
+        "y": 580,
+        "wires": [
+            [
+                "b195e7a48cdd1311"
+            ]
+        ]
+    },
+    {
+        "id": "b195e7a48cdd1311",
+        "type": "ui_text",
+        "z": "52746a71.334bd4",
+        "group": "7260b6f54d8e2e0a",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Stav tienenia",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "x": 3290,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "feb9b804d5672bce",
+        "type": "comment",
+        "z": "52746a71.334bd4",
+        "name": "Ovladanie tienenia",
+        "info": "",
+        "x": 2170,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "efc4d62c5168c5cb",
+        "type": "inject",
+        "z": "52746a71.334bd4",
+        "name": "Vysoke_osvetlenie",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 2090,
+        "y": 640,
+        "wires": [
+            [
+                "ba225c26c0e1c4ab"
+            ]
+        ]
+    },
+    {
+        "id": "ba225c26c0e1c4ab",
+        "type": "function",
+        "z": "52746a71.334bd4",
+        "name": "",
+        "func": "if(flow.get(\"Shading\")==\"AUTO\"){\n    msg.payload = \"true\";\n    return msg;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2340,
+        "y": 640,
+        "wires": [
+            [
+                "3e7caf8fc31174a9"
+            ]
+        ]
+    },
+    {
+        "id": "c97966c4fbbf025a",
+        "type": "inject",
+        "z": "52746a71.334bd4",
+        "name": "Nedostatok_svetla",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 2090,
+        "y": 720,
+        "wires": [
+            [
+                "843ea18260ec2ac2"
+            ]
+        ]
+    },
+    {
+        "id": "843ea18260ec2ac2",
+        "type": "function",
+        "z": "52746a71.334bd4",
+        "name": "",
+        "func": "if(flow.get(\"Shading\")==\"AUTO\"){\n    msg.payload = \"false\";\n    return msg;\n}\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 2340,
+        "y": 720,
+        "wires": [
+            [
+                "3e7caf8fc31174a9"
+            ]
+        ]
+    },
+    {
+        "id": "299822c9558c55a4",
+        "type": "inject",
+        "z": "52746a71.334bd4",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.5",
+        "topic": "dsh",
+        "payload": "auto",
+        "payloadType": "str",
+        "x": 120,
+        "y": 1380,
+        "wires": [
+            [
+                "d376208a.2466a",
+                "48f1b81c.65d1f8"
+            ]
+        ]
+    },
+    {
+        "id": "fb163c2f5ebd97e7",
+        "type": "inject",
+        "z": "52746a71.334bd4",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.5",
+        "topic": "",
+        "payload": "auto",
+        "payloadType": "str",
+        "x": 50,
+        "y": 120,
+        "wires": [
+            [
+                "ffd9ed22.69347"
+            ]
+        ]
+    },
+    {
+        "id": "16dc06fa8286581f",
+        "type": "inject",
+        "z": "52746a71.334bd4",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "auto",
+        "payloadType": "str",
+        "x": 1850,
+        "y": 400,
+        "wires": [
+            [
+                "2c7b8d219357d314"
+            ]
+        ]
     },
     {
         "id": "660f167e.01fa38",
@@ -6734,7 +7159,7 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "Zapnuta",
+                "to": "Zapnute",
                 "tot": "str"
             }
         ],
@@ -6756,7 +7181,7 @@
         "type": "function",
         "z": "9aff5cd6.f4336",
         "name": "",
-        "func": "var drh = msg.payload;\nif(msg.topic == \"dsh\"){\n    if(drh == \"on\"){\n        msg.payload = 'true';\n    }else if(drh == \"off\"){\n        msg.payload = 'false';\n    }\n    return msg;\n}else{\nvar uz = new Date();\nuz = uz.getHours();\nvar def = flow.get(\"state\");\nif(def == \"auto\"){\n    if(uz > 7 && uz <= 18 ){\n        msg.payload=\"false\";\n    }else{\n        msg.payload=drh;\n        msg.topic=\"noc\";\n    }\n    return msg;\n}else{\n    msg.payload=def;\n    return msg;\n}\n}\nreturn null;",
+        "func": "var drh = msg.payload;\nif(drh == \"on\"){\n    msg.payload = 'true';\n}else if(drh == \"off\"){\n        msg.payload = 'false';\n}else if(drh == \"auto\"){\n    msg.payload = 'false';\n}\nreturn msg;\n",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -6767,8 +7192,7 @@
         "wires": [
             [
                 "6965e7c4.94ff68",
-                "4f964d5c.6ab734",
-                "b8997ec0.03b96"
+                "4f964d5c.6ab734"
             ]
         ]
     },
@@ -6798,10 +7222,12 @@
         "y": 300,
         "wires": [
             [
-                "f780ce8f.23e2"
+                "f780ce8f.23e2",
+                "f675168f92246b50"
             ],
             [
-                "c81ca0a8.5e488"
+                "c81ca0a8.5e488",
+                "f675168f92246b50"
             ]
         ]
     },
@@ -6815,7 +7241,7 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "Vypnuta",
+                "to": "Vypnute",
                 "tot": "str"
             }
         ],
@@ -6957,16 +7383,16 @@
         "type": "ui_template",
         "z": "9aff5cd6.f4336",
         "group": "de2505cd.6c5ad8",
-        "name": "Kuchyna_template_1",
+        "name": "Kuchyna_tlacitko_zapnut",
         "order": 3,
-        "width": 2,
+        "width": 4,
         "height": 1,
-        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n</style>\n<md-button class=\"filled rounded\"\n   style=\"background-color:#30833A\"\n    ng-click=\"send({payload: 'on', topic: 'dsh'})\"> \n    ON\n</md-button>",
+        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n</style>\n<md-button class=\"filled rounded\"\n   style=\"background-color:#30833A\"\n    ng-click=\"send({payload: 'on', topic: 'dsh'})\"> \n    ZAPNÚŤ\n</md-button>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
-        "x": 280,
+        "x": 290,
         "y": 100,
         "wires": [
             [
@@ -6981,9 +7407,9 @@
         "type": "ui_template",
         "z": "9aff5cd6.f4336",
         "group": "de2505cd.6c5ad8",
-        "name": "Kuchyna_template_2",
+        "name": "Kuchyna_tlacitko_auto",
         "order": 4,
-        "width": 2,
+        "width": 4,
         "height": 1,
         "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n  \n.highlight {\n    background-color: yellow !important;\n}\n \n</style>\n<md-button class=\"filled rounded\"\n   style=\"background-color:#61BCE1\"\n    ng-click=\"send({payload: 'auto', topic: 'dsh'})\"> \n    AUTO\n</md-button>",
         "storeOutMessages": true,
@@ -6995,7 +7421,8 @@
         "wires": [
             [
                 "f5002606.29a898",
-                "385b2ec6.6a73d2"
+                "385b2ec6.6a73d2",
+                "7f1a5fb3.808d6"
             ]
         ]
     },
@@ -7004,16 +7431,16 @@
         "type": "ui_template",
         "z": "9aff5cd6.f4336",
         "group": "de2505cd.6c5ad8",
-        "name": "Kuchyna_template_3",
+        "name": "Kuchyna_tlacitko_vypnut",
         "order": 5,
-        "width": 2,
+        "width": 4,
         "height": 1,
-        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n    \n.nr-dashboard-template {\n      padding: 0;\n      margin: 0;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n  .highlight {\n    background-color: yellow !important;\n}\n \n.images {\n    background-size: 100% 100%;\n    background-repeat: no-repeat; \n    }\n     \n.highlight-image {\n    background-image: var(--myHighlight) !important;\n}\n</style>\n<md-button class=\"vibrate filled touched rounded\"\n   style=\"background-color:#C9342F\"\n    ng-click=\"send({payload: 'off', topic: 'dsh'})\"> \n    OFF\n</md-button>",
+        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n    \n.nr-dashboard-template {\n      padding: 0;\n      margin: 0;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n  .highlight {\n    background-color: yellow !important;\n}\n \n.images {\n    background-size: 100% 100%;\n    background-repeat: no-repeat; \n    }\n     \n.highlight-image {\n    background-image: var(--myHighlight) !important;\n}\n</style>\n<md-button class=\"vibrate filled touched rounded\"\n   style=\"background-color:#C9342F\"\n    ng-click=\"send({payload: 'off', topic: 'dsh'})\"> \n    VYPNÚŤ\n</md-button>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
-        "x": 280,
+        "x": 290,
         "y": 220,
         "wires": [
             [
@@ -7052,7 +7479,7 @@
             }
         ],
         "allowColorForValueInMessage": false,
-        "shape": "circle",
+        "shape": "square",
         "showGlow": true,
         "name": "Kuchyna_led",
         "x": 510,
@@ -7085,7 +7512,7 @@
         "y": 420,
         "wires": [
             [
-                "7f1a5fb3.808d6"
+                "4b72ef95da08929b"
             ],
             [
                 "22e9a52a.39615a"
@@ -7199,49 +7626,6 @@
         ]
     },
     {
-        "id": "b8997ec0.03b96",
-        "type": "switch",
-        "z": "9aff5cd6.f4336",
-        "name": "",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "noc",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 940,
-        "y": 140,
-        "wires": [
-            [
-                "142eaf4c.94e241"
-            ]
-        ]
-    },
-    {
-        "id": "142eaf4c.94e241",
-        "type": "mqtt out",
-        "z": "9aff5cd6.f4336",
-        "name": "",
-        "topic": "home/kuchyne/noc_on",
-        "qos": "1",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "30f5ccb2.518334",
-        "x": 1190,
-        "y": 120,
-        "wires": []
-    },
-    {
         "id": "997a7ce0.fcaa",
         "type": "mqtt out",
         "z": "9aff5cd6.f4336",
@@ -7280,6 +7664,161 @@
         ]
     },
     {
+        "id": "4b72ef95da08929b",
+        "type": "function",
+        "z": "9aff5cd6.f4336",
+        "name": "",
+        "func": "var def = flow.get(\"state\");\nif(def == \"auto\"){\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 500,
+        "wires": [
+            [
+                "3ff6375797d42e91"
+            ]
+        ]
+    },
+    {
+        "id": "3ff6375797d42e91",
+        "type": "change",
+        "z": "9aff5cd6.f4336",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "true",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 580,
+        "wires": [
+            [
+                "cc7bc0dfb5322777",
+                "6965e7c4.94ff68"
+            ]
+        ]
+    },
+    {
+        "id": "aa3e1b0bdd04a944",
+        "type": "change",
+        "z": "9aff5cd6.f4336",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "false",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 900,
+        "y": 580,
+        "wires": [
+            [
+                "6965e7c4.94ff68"
+            ]
+        ]
+    },
+    {
+        "id": "cc7bc0dfb5322777",
+        "type": "delay",
+        "z": "9aff5cd6.f4336",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 700,
+        "y": 560,
+        "wires": [
+            [
+                "aa3e1b0bdd04a944"
+            ]
+        ]
+    },
+    {
+        "id": "f675168f92246b50",
+        "type": "ui_led",
+        "z": "9aff5cd6.f4336",
+        "order": 1,
+        "group": "de2505cd.6c5ad8",
+        "width": 4,
+        "height": 1,
+        "label": "Kuchyňa",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#0db50d",
+                "value": "true",
+                "valueType": "str"
+            },
+            {
+                "color": "#959795",
+                "value": "false",
+                "valueType": "str"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Svetlo_Kuchyna",
+        "x": 980,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "ae86d4c2b04b7dec",
+        "type": "inject",
+        "z": "9aff5cd6.f4336",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "auto",
+        "payloadType": "str",
+        "x": 50,
+        "y": 160,
+        "wires": [
+            [
+                "fd3778f3.fdded8"
+            ]
+        ]
+    },
+    {
         "id": "95e97857.97ec48",
         "type": "mqtt in",
         "z": "fa27b8c7.a89288",
@@ -7309,7 +7848,7 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "Zapnuta",
+                "to": "Zapnute",
                 "tot": "str"
             }
         ],
@@ -7331,19 +7870,18 @@
         "type": "function",
         "z": "fa27b8c7.a89288",
         "name": "",
-        "func": "var drh = msg.payload;\nif(msg.topic == \"dsh\"){\n    if(drh == \"on\"){\n        msg.payload = 'true';\n    }else if(drh == \"off\"){\n        msg.payload = 'false';\n    }\n    return msg;\n}else{\nvar uz = new Date();\nuz = uz.getHours();\nvar def = flow.get(\"state\");\nif(def == \"auto\"){\n    if(uz > 7 && uz <= 18 ){\n        msg.payload=\"false\";\n    }else{\n        msg.payload=drh;\n    }\n    return msg;\n}else{\n    msg.payload=def;\n    return msg;\n}\n}\nreturn null;",
+        "func": "var drh = msg.payload;\nif(drh == \"on\"){\n    msg.payload = 'true';\n}else if(drh == \"off\"){\n        msg.payload = 'false';\n}else if(drh == \"auto\"){\n    msg.payload = 'false';\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 800,
-        "y": 360,
+        "y": 340,
         "wires": [
             [
                 "5206c983.b2fb58",
-                "f5670f18.43de5",
-                "54b3c16d.3c8cb"
+                "f5670f18.43de5"
             ]
         ]
     },
@@ -7373,10 +7911,12 @@
         "y": 360,
         "wires": [
             [
-                "cbcdc14e.c4c7b"
+                "cbcdc14e.c4c7b",
+                "712a7ef0883902fd"
             ],
             [
-                "c7486d9a.4779d"
+                "c7486d9a.4779d",
+                "712a7ef0883902fd"
             ]
         ]
     },
@@ -7390,7 +7930,7 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "Vypnuta",
+                "to": "Vypnute",
                 "tot": "str"
             }
         ],
@@ -7532,16 +8072,16 @@
         "type": "ui_template",
         "z": "fa27b8c7.a89288",
         "group": "de2505cd.6c5ad8",
-        "name": "Obyvacka_template_1",
-        "order": 7,
-        "width": 1,
+        "name": "Obyvacka_tlacitko_zapnut",
+        "order": 8,
+        "width": 4,
         "height": 1,
-        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n</style>\n<md-button class=\"filled rounded\"\n   style=\"background-color:#30833A\"\n    ng-click=\"send({payload: 'on', topic: 'dsh'})\"> \n    ON\n</md-button>",
+        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n</style>\n<md-button class=\"filled rounded\"\n   style=\"background-color:#30833A\"\n    ng-click=\"send({payload: 'on', topic: 'dsh'})\"> \n    ZAPNÚŤ\n</md-button>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
-        "x": 300,
+        "x": 310,
         "y": 160,
         "wires": [
             [
@@ -7556,21 +8096,22 @@
         "type": "ui_template",
         "z": "fa27b8c7.a89288",
         "group": "de2505cd.6c5ad8",
-        "name": "Obyvacka_template_2",
-        "order": 8,
-        "width": 1,
+        "name": "Obyvacka_tlacitko_auto",
+        "order": 9,
+        "width": 4,
         "height": 1,
         "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n  \n.highlight {\n    background-color: yellow !important;\n}\n \n</style>\n<md-button class=\"filled rounded\"\n   style=\"background-color:#61BCE1\"\n    ng-click=\"send({payload: 'auto', topic: 'dsh'})\"> \n    AUTO\n</md-button>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
-        "x": 300,
+        "x": 310,
         "y": 220,
         "wires": [
             [
                 "be7bad9e.1bb01",
-                "a5cb8a68.23c788"
+                "a5cb8a68.23c788",
+                "5849c00d.8262a"
             ]
         ]
     },
@@ -7579,16 +8120,16 @@
         "type": "ui_template",
         "z": "fa27b8c7.a89288",
         "group": "de2505cd.6c5ad8",
-        "name": "Obyvacka_template_3",
-        "order": 9,
-        "width": 1,
+        "name": "Obyvacka_tlacitko_vypnut",
+        "order": 10,
+        "width": 4,
         "height": 1,
-        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n    \n.nr-dashboard-template {\n      padding: 0;\n      margin: 0;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n  .highlight {\n    background-color: yellow !important;\n}\n \n.images {\n    background-size: 100% 100%;\n    background-repeat: no-repeat; \n    }\n     \n.highlight-image {\n    background-image: var(--myHighlight) !important;\n}\n</style>\n<md-button class=\"vibrate filled touched rounded\"\n   style=\"background-color:#C9342F\"\n    ng-click=\"send({payload: 'off', topic: 'dsh'})\"> \n    OFF\n</md-button>",
+        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n    \n.nr-dashboard-template {\n      padding: 0;\n      margin: 0;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n  .highlight {\n    background-color: yellow !important;\n}\n \n.images {\n    background-size: 100% 100%;\n    background-repeat: no-repeat; \n    }\n     \n.highlight-image {\n    background-image: var(--myHighlight) !important;\n}\n</style>\n<md-button class=\"vibrate filled touched rounded\"\n   style=\"background-color:#C9342F\"\n    ng-click=\"send({payload: 'off', topic: 'dsh'})\"> \n    VYPNÚŤ\n</md-button>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
-        "x": 300,
+        "x": 310,
         "y": 280,
         "wires": [
             [
@@ -7602,11 +8143,11 @@
         "id": "be7bad9e.1bb01",
         "type": "ui_led",
         "z": "fa27b8c7.a89288",
-        "order": 6,
+        "order": 7,
         "group": "de2505cd.6c5ad8",
-        "width": 3,
+        "width": 1,
         "height": 1,
-        "label": "Obyvacka",
+        "label": "",
         "labelPlacement": "left",
         "labelAlignment": "left",
         "colorForValue": [
@@ -7627,7 +8168,7 @@
             }
         ],
         "allowColorForValueInMessage": false,
-        "shape": "circle",
+        "shape": "square",
         "showGlow": true,
         "name": "Obyvacka_led",
         "x": 540,
@@ -7660,7 +8201,7 @@
         "y": 480,
         "wires": [
             [
-                "5849c00d.8262a"
+                "3cfd06f66c7defff"
             ],
             [
                 "3441b851.7514d8"
@@ -7774,49 +8315,6 @@
         ]
     },
     {
-        "id": "54b3c16d.3c8cb",
-        "type": "switch",
-        "z": "fa27b8c7.a89288",
-        "name": "",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "noc",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 950,
-        "y": 180,
-        "wires": [
-            [
-                "97e36ea6.51bd2"
-            ]
-        ]
-    },
-    {
-        "id": "97e36ea6.51bd2",
-        "type": "mqtt out",
-        "z": "fa27b8c7.a89288",
-        "name": "",
-        "topic": "home/obyvacka/noc_on",
-        "qos": "1",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "30f5ccb2.518334",
-        "x": 1210,
-        "y": 160,
-        "wires": []
-    },
-    {
         "id": "65d25bf3.a72914",
         "type": "mqtt out",
         "z": "fa27b8c7.a89288",
@@ -7855,10 +8353,165 @@
         ]
     },
     {
+        "id": "712a7ef0883902fd",
+        "type": "ui_led",
+        "z": "fa27b8c7.a89288",
+        "order": 6,
+        "group": "de2505cd.6c5ad8",
+        "width": 4,
+        "height": 1,
+        "label": "Obývacia miestnosť",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#0db50d",
+                "value": "true",
+                "valueType": "str"
+            },
+            {
+                "color": "#959795",
+                "value": "false",
+                "valueType": "str"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Svetlo_obyvacka",
+        "x": 1090,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "dae2a4f0e97c6a0a",
+        "type": "change",
+        "z": "fa27b8c7.a89288",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "false",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 880,
+        "y": 760,
+        "wires": [
+            [
+                "5206c983.b2fb58"
+            ]
+        ]
+    },
+    {
+        "id": "34dd7daddc2b4c3e",
+        "type": "delay",
+        "z": "fa27b8c7.a89288",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 680,
+        "y": 740,
+        "wires": [
+            [
+                "dae2a4f0e97c6a0a"
+            ]
+        ]
+    },
+    {
+        "id": "e81ec24d67cda503",
+        "type": "change",
+        "z": "fa27b8c7.a89288",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "true",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 500,
+        "y": 760,
+        "wires": [
+            [
+                "34dd7daddc2b4c3e",
+                "5206c983.b2fb58"
+            ]
+        ]
+    },
+    {
+        "id": "3cfd06f66c7defff",
+        "type": "function",
+        "z": "fa27b8c7.a89288",
+        "name": "",
+        "func": "var def = flow.get(\"state\");\nif(def == \"auto\"){\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 680,
+        "wires": [
+            [
+                "e81ec24d67cda503"
+            ]
+        ]
+    },
+    {
+        "id": "31afe0031200278a",
+        "type": "inject",
+        "z": "fa27b8c7.a89288",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "auto",
+        "payloadType": "str",
+        "x": 90,
+        "y": 220,
+        "wires": [
+            [
+                "3d2e8b4a.bf6924"
+            ]
+        ]
+    },
+    {
         "id": "54a5eb6c.e26bf4",
         "type": "mqtt in",
         "z": "35ef67ac.997568",
-        "name": "Pohyb_spalen",
+        "name": "Pohyb_izba",
         "topic": "home/spalen/+",
         "qos": "1",
         "datatype": "auto",
@@ -7884,7 +8537,7 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "Zapnuta",
+                "to": "Zapnute",
                 "tot": "str"
             }
         ],
@@ -7906,18 +8559,18 @@
         "type": "function",
         "z": "35ef67ac.997568",
         "name": "",
-        "func": "var drh = msg.payload;\nif(msg.topic == \"dsh\"){\n    if(drh == \"on\"){\n        msg.payload = 'true';\n    }else if(drh == \"off\"){\n        msg.payload = 'false';\n    }\n    return msg;\n}else{\nvar uz = new Date();\nuz = uz.getHours();\nvar def = flow.get(\"state\");\nif(def == \"auto\"){\n    if(uz > 7 && uz <= 18 ){\n        msg.payload=\"false\";\n    }else{\n        msg.payload=drh;\n    }\n    return msg;\n}else{\n    msg.payload=def;\n    return msg;\n}\n}\nreturn null;",
+        "func": "var drh = msg.payload;\nif(drh == \"on\"){\n    msg.payload = 'true';\n}else if(drh == \"off\"){\n        msg.payload = 'false';\n}else if(drh == \"auto\"){\n    msg.payload = 'false';\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 820,
         "y": 380,
         "wires": [
             [
                 "7862163.3e129e8",
-                "6058ce64.20942",
-                "617ca2b5.e0296c"
+                "6058ce64.20942"
             ]
         ]
     },
@@ -7947,10 +8600,12 @@
         "y": 380,
         "wires": [
             [
-                "ef98b581.4780e8"
+                "ef98b581.4780e8",
+                "ae9cf6a8f7d11ea2"
             ],
             [
-                "9645fb92.69a6d8"
+                "9645fb92.69a6d8",
+                "ae9cf6a8f7d11ea2"
             ]
         ]
     },
@@ -7964,7 +8619,7 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "Vypnuta",
+                "to": "Vypnute",
                 "tot": "str"
             }
         ],
@@ -8106,16 +8761,16 @@
         "type": "ui_template",
         "z": "35ef67ac.997568",
         "group": "de2505cd.6c5ad8",
-        "name": "Spalen_template_1",
-        "order": 12,
-        "width": 1,
+        "name": "Izba_tlacitko_zapnut",
+        "order": 13,
+        "width": 4,
         "height": 1,
-        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n</style>\n<md-button class=\"filled rounded\"\n   style=\"background-color:#30833A\"\n    ng-click=\"send({payload: 'on', topic: 'dsh'})\"> \n    ON\n</md-button>",
+        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n</style>\n<md-button class=\"filled rounded\"\n   style=\"background-color:#30833A\"\n    ng-click=\"send({payload: 'on', topic: 'dsh'})\"> \n    ZAPNÚŤ\n</md-button>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
-        "x": 310,
+        "x": 320,
         "y": 180,
         "wires": [
             [
@@ -8130,9 +8785,9 @@
         "type": "ui_template",
         "z": "35ef67ac.997568",
         "group": "de2505cd.6c5ad8",
-        "name": "Spalen_template_2",
-        "order": 13,
-        "width": 1,
+        "name": "Izba_tlacitko_auto",
+        "order": 14,
+        "width": 4,
         "height": 1,
         "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n  \n.highlight {\n    background-color: yellow !important;\n}\n \n</style>\n<md-button class=\"filled rounded\"\n   style=\"background-color:#61BCE1\"\n    ng-click=\"send({payload: 'auto', topic: 'dsh'})\"> \n    AUTO\n</md-button>",
         "storeOutMessages": true,
@@ -8144,7 +8799,8 @@
         "wires": [
             [
                 "dd1305bb.a88de8",
-                "12347346.b6688d"
+                "12347346.b6688d",
+                "593c03c4.a8c50c"
             ]
         ]
     },
@@ -8153,16 +8809,16 @@
         "type": "ui_template",
         "z": "35ef67ac.997568",
         "group": "de2505cd.6c5ad8",
-        "name": "Spalen_template_3",
-        "order": 14,
-        "width": 1,
+        "name": "Izba_tlacitko_vypnut",
+        "order": 15,
+        "width": 4,
         "height": 1,
-        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n    \n.nr-dashboard-template {\n      padding: 0;\n      margin: 0;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n  .highlight {\n    background-color: yellow !important;\n}\n \n.images {\n    background-size: 100% 100%;\n    background-repeat: no-repeat; \n    }\n     \n.highlight-image {\n    background-image: var(--myHighlight) !important;\n}\n</style>\n<md-button class=\"vibrate filled touched rounded\"\n   style=\"background-color:#C9342F\"\n    ng-click=\"send({payload: 'off', topic: 'dsh'})\"> \n    OFF\n</md-button>",
+        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n    \n.nr-dashboard-template {\n      padding: 0;\n      margin: 0;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n  .highlight {\n    background-color: yellow !important;\n}\n \n.images {\n    background-size: 100% 100%;\n    background-repeat: no-repeat; \n    }\n     \n.highlight-image {\n    background-image: var(--myHighlight) !important;\n}\n</style>\n<md-button class=\"vibrate filled touched rounded\"\n   style=\"background-color:#C9342F\"\n    ng-click=\"send({payload: 'off', topic: 'dsh'})\"> \n    VYPNÚŤ\n</md-button>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
-        "x": 310,
+        "x": 320,
         "y": 300,
         "wires": [
             [
@@ -8176,11 +8832,11 @@
         "id": "dd1305bb.a88de8",
         "type": "ui_led",
         "z": "35ef67ac.997568",
-        "order": 11,
+        "order": 12,
         "group": "de2505cd.6c5ad8",
-        "width": 3,
+        "width": 1,
         "height": 1,
-        "label": "Spalen",
+        "label": "",
         "labelPlacement": "left",
         "labelAlignment": "left",
         "colorForValue": [
@@ -8201,10 +8857,10 @@
             }
         ],
         "allowColorForValueInMessage": false,
-        "shape": "circle",
+        "shape": "square",
         "showGlow": true,
-        "name": "Loznice_led",
-        "x": 550,
+        "name": "Izba_led",
+        "x": 540,
         "y": 160,
         "wires": []
     },
@@ -8234,7 +8890,7 @@
         "y": 500,
         "wires": [
             [
-                "593c03c4.a8c50c"
+                "6b952ea74e10986b"
             ],
             [
                 "db191adb.ab5d88"
@@ -8348,49 +9004,6 @@
         ]
     },
     {
-        "id": "617ca2b5.e0296c",
-        "type": "switch",
-        "z": "35ef67ac.997568",
-        "name": "",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "noc",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 950,
-        "y": 200,
-        "wires": [
-            [
-                "3f5399e.6a09566"
-            ]
-        ]
-    },
-    {
-        "id": "3f5399e.6a09566",
-        "type": "mqtt out",
-        "z": "35ef67ac.997568",
-        "name": "",
-        "topic": "home/spalen/noc_on",
-        "qos": "1",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "30f5ccb2.518334",
-        "x": 1200,
-        "y": 180,
-        "wires": []
-    },
-    {
         "id": "60d82562.3a9dec",
         "type": "mqtt out",
         "z": "35ef67ac.997568",
@@ -8429,6 +9042,161 @@
         ]
     },
     {
+        "id": "ae9cf6a8f7d11ea2",
+        "type": "ui_led",
+        "z": "35ef67ac.997568",
+        "order": 11,
+        "group": "de2505cd.6c5ad8",
+        "width": 4,
+        "height": 1,
+        "label": "Izba",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#0db50d",
+                "value": "true",
+                "valueType": "str"
+            },
+            {
+                "color": "#959795",
+                "value": "false",
+                "valueType": "str"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Svetlo_izba",
+        "x": 1130,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "ca804adcf74871e4",
+        "type": "change",
+        "z": "35ef67ac.997568",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "false",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 900,
+        "y": 780,
+        "wires": [
+            [
+                "7862163.3e129e8"
+            ]
+        ]
+    },
+    {
+        "id": "5d6beec1ac9a20a5",
+        "type": "delay",
+        "z": "35ef67ac.997568",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 700,
+        "y": 760,
+        "wires": [
+            [
+                "ca804adcf74871e4"
+            ]
+        ]
+    },
+    {
+        "id": "3a738e67e6c96354",
+        "type": "change",
+        "z": "35ef67ac.997568",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "true",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 520,
+        "y": 780,
+        "wires": [
+            [
+                "5d6beec1ac9a20a5",
+                "7862163.3e129e8"
+            ]
+        ]
+    },
+    {
+        "id": "6b952ea74e10986b",
+        "type": "function",
+        "z": "35ef67ac.997568",
+        "name": "",
+        "func": "var def = flow.get(\"state\");\nif(def == \"auto\"){\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 700,
+        "wires": [
+            [
+                "3a738e67e6c96354"
+            ]
+        ]
+    },
+    {
+        "id": "40c50a64042bf9dc",
+        "type": "inject",
+        "z": "35ef67ac.997568",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "auto",
+        "payloadType": "str",
+        "x": 110,
+        "y": 240,
+        "wires": [
+            [
+                "15f92d59.72e7d3"
+            ]
+        ]
+    },
+    {
         "id": "da93290d.13c168",
         "type": "mqtt in",
         "z": "136fd60a.329e8a",
@@ -8458,7 +9226,7 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "Zapnuta",
+                "to": "Zapnute",
                 "tot": "str"
             }
         ],
@@ -8480,7 +9248,7 @@
         "type": "function",
         "z": "136fd60a.329e8a",
         "name": "",
-        "func": "var drh = msg.payload;\nif(msg.topic == \"dsh\"){\n    if(drh == \"on\"){\n        msg.payload = 'true';\n    }else if(drh == \"off\"){\n        msg.payload = 'false';\n    }\n    return msg;\n}else{\nvar uz = new Date();\nuz = uz.getHours();\nvar def = flow.get(\"state\");\nif(def == \"auto\"){\n    if(uz > 7 && uz <= 18 ){\n        msg.payload=\"false\";\n    }else{\n        msg.payload=drh;\n    }\n    return msg;\n}else{\n    msg.payload=def;\n    return msg;\n}\n}\nreturn null;",
+        "func": "var drh = msg.payload;\nif(drh == \"on\"){\n    msg.payload = 'true';\n}else if(drh == \"off\"){\n        msg.payload = 'false';\n}else if(drh == \"auto\"){\n    msg.payload = 'false';\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -8491,8 +9259,7 @@
         "wires": [
             [
                 "dd1af8cd.6cd378",
-                "1fbbd1d5.7bc44e",
-                "18f9ebf8.9772d4"
+                "1fbbd1d5.7bc44e"
             ]
         ]
     },
@@ -8522,10 +9289,12 @@
         "y": 360,
         "wires": [
             [
-                "405458d5.5a2728"
+                "405458d5.5a2728",
+                "c9fe71cade76d231"
             ],
             [
-                "a76def03.92ae9"
+                "a76def03.92ae9",
+                "c9fe71cade76d231"
             ]
         ]
     },
@@ -8539,7 +9308,7 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "Vypnuta",
+                "to": "Vypnute",
                 "tot": "str"
             }
         ],
@@ -8680,16 +9449,16 @@
         "type": "ui_template",
         "z": "136fd60a.329e8a",
         "group": "de2505cd.6c5ad8",
-        "name": "Vchod_template_1",
-        "order": 22,
-        "width": 1,
+        "name": "Vchod_tlacitko_zapnut",
+        "order": 18,
+        "width": 4,
         "height": 1,
-        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n</style>\n<md-button class=\"filled rounded\"\n   style=\"background-color:#30833A\"\n    ng-click=\"send({payload: 'on', topic: 'dsh'})\"> \n    ON\n</md-button>",
+        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n</style>\n<md-button class=\"filled rounded\"\n   style=\"background-color:#30833A\"\n    ng-click=\"send({payload: 'on', topic: 'dsh'})\"> \n    ZAPNÚŤ\n</md-button>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
-        "x": 290,
+        "x": 300,
         "y": 160,
         "wires": [
             [
@@ -8704,21 +9473,22 @@
         "type": "ui_template",
         "z": "136fd60a.329e8a",
         "group": "de2505cd.6c5ad8",
-        "name": "Vchod_template_2",
-        "order": 23,
-        "width": 1,
+        "name": "Vchod_tlacitko_auto",
+        "order": 19,
+        "width": 4,
         "height": 1,
         "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n  \n.highlight {\n    background-color: yellow !important;\n}\n \n</style>\n<md-button class=\"filled rounded\"\n   style=\"background-color:#61BCE1\"\n    ng-click=\"send({payload: 'auto', topic: 'dsh'})\"> \n    AUTO\n</md-button>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
-        "x": 290,
+        "x": 300,
         "y": 220,
         "wires": [
             [
                 "69b3866.141d178",
-                "57849cdc.72d644"
+                "57849cdc.72d644",
+                "fbea0ac2.5e82c8"
             ]
         ]
     },
@@ -8727,16 +9497,16 @@
         "type": "ui_template",
         "z": "136fd60a.329e8a",
         "group": "de2505cd.6c5ad8",
-        "name": "Vchod_template_3",
-        "order": 24,
-        "width": 1,
+        "name": "Vchod_tlacitko_vypnut",
+        "order": 20,
+        "width": 4,
         "height": 1,
-        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n    \n.nr-dashboard-template {\n      padding: 0;\n      margin: 0;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n  .highlight {\n    background-color: yellow !important;\n}\n \n.images {\n    background-size: 100% 100%;\n    background-repeat: no-repeat; \n    }\n     \n.highlight-image {\n    background-image: var(--myHighlight) !important;\n}\n</style>\n<md-button class=\"vibrate filled touched rounded\"\n   style=\"background-color:#C9342F\"\n    ng-click=\"send({payload: 'off', topic: 'dsh'})\"> \n    OFF\n</md-button>",
+        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n    \n.nr-dashboard-template {\n      padding: 0;\n      margin: 0;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n  .highlight {\n    background-color: yellow !important;\n}\n \n.images {\n    background-size: 100% 100%;\n    background-repeat: no-repeat; \n    }\n     \n.highlight-image {\n    background-image: var(--myHighlight) !important;\n}\n</style>\n<md-button class=\"vibrate filled touched rounded\"\n   style=\"background-color:#C9342F\"\n    ng-click=\"send({payload: 'off', topic: 'dsh'})\"> \n    VYPNÚŤ\n</md-button>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
-        "x": 290,
+        "x": 300,
         "y": 280,
         "wires": [
             [
@@ -8750,11 +9520,11 @@
         "id": "69b3866.141d178",
         "type": "ui_led",
         "z": "136fd60a.329e8a",
-        "order": 21,
+        "order": 17,
         "group": "de2505cd.6c5ad8",
-        "width": 3,
+        "width": 1,
         "height": 1,
-        "label": "Vchod",
+        "label": "",
         "labelPlacement": "left",
         "labelAlignment": "left",
         "colorForValue": [
@@ -8775,7 +9545,7 @@
             }
         ],
         "allowColorForValueInMessage": false,
-        "shape": "circle",
+        "shape": "square",
         "showGlow": true,
         "name": "Vchod_led",
         "x": 530,
@@ -8808,7 +9578,7 @@
         "y": 480,
         "wires": [
             [
-                "fbea0ac2.5e82c8"
+                "18a2866d8e4efe8e"
             ],
             [
                 "2e998e7a.c6a1f2"
@@ -8922,49 +9692,6 @@
         ]
     },
     {
-        "id": "18f9ebf8.9772d4",
-        "type": "switch",
-        "z": "136fd60a.329e8a",
-        "name": "",
-        "property": "topic",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "noc",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 910,
-        "y": 200,
-        "wires": [
-            [
-                "c5df0de6.fcf5b"
-            ]
-        ]
-    },
-    {
-        "id": "c5df0de6.fcf5b",
-        "type": "mqtt out",
-        "z": "136fd60a.329e8a",
-        "name": "",
-        "topic": "home/vchod/noc_on",
-        "qos": "1",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "30f5ccb2.518334",
-        "x": 1160,
-        "y": 180,
-        "wires": []
-    },
-    {
         "id": "1bbdbe85.6e2c31",
         "type": "mqtt out",
         "z": "136fd60a.329e8a",
@@ -8992,6 +9719,161 @@
         "wires": [
             [
                 "1bbdbe85.6e2c31"
+            ]
+        ]
+    },
+    {
+        "id": "c9fe71cade76d231",
+        "type": "ui_led",
+        "z": "136fd60a.329e8a",
+        "order": 16,
+        "group": "de2505cd.6c5ad8",
+        "width": 4,
+        "height": 1,
+        "label": "Vchod",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#0db50d",
+                "value": "true",
+                "valueType": "str"
+            },
+            {
+                "color": "#959795",
+                "value": "false",
+                "valueType": "str"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Svetlo_vchod",
+        "x": 1080,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "ecdc686c0e477c91",
+        "type": "change",
+        "z": "136fd60a.329e8a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "false",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 860,
+        "y": 760,
+        "wires": [
+            [
+                "dd1af8cd.6cd378"
+            ]
+        ]
+    },
+    {
+        "id": "ca2a3d5ed9a54a25",
+        "type": "delay",
+        "z": "136fd60a.329e8a",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 660,
+        "y": 740,
+        "wires": [
+            [
+                "ecdc686c0e477c91"
+            ]
+        ]
+    },
+    {
+        "id": "332e45cc9e2e603e",
+        "type": "change",
+        "z": "136fd60a.329e8a",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "true",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 480,
+        "y": 760,
+        "wires": [
+            [
+                "ca2a3d5ed9a54a25",
+                "fbea0ac2.5e82c8"
+            ]
+        ]
+    },
+    {
+        "id": "18a2866d8e4efe8e",
+        "type": "function",
+        "z": "136fd60a.329e8a",
+        "name": "",
+        "func": "var def = flow.get(\"state\");\nif(def == \"auto\"){\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 680,
+        "wires": [
+            [
+                "332e45cc9e2e603e"
+            ]
+        ]
+    },
+    {
+        "id": "0ffa8148cb4b8333",
+        "type": "inject",
+        "z": "136fd60a.329e8a",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "auto",
+        "payloadType": "str",
+        "x": 70,
+        "y": 220,
+        "wires": [
+            [
+                "15f7f166.45b7ff"
             ]
         ]
     },
@@ -9025,7 +9907,7 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "Zapnuta",
+                "to": "Zapnute",
                 "tot": "str"
             }
         ],
@@ -9047,7 +9929,7 @@
         "type": "function",
         "z": "41699c29.520954",
         "name": "",
-        "func": "var drh = msg.payload;\nif(msg.topic == \"dsh\"){\n    if(drh == \"on\"){\n        msg.payload = 'true';\n    }else if(drh == \"off\"){\n        msg.payload = 'false';\n    }\n    return msg;\n}else{\nvar uz = new Date();\nuz = uz.getHours();\nvar def = flow.get(\"state\");\nif(def == \"auto\"){\n    if(uz > 7 && uz <= 18 ){\n        msg.payload=\"false\";\n    }else{\n        msg.payload=drh;\n    }\n    return msg;\n}else{\n    msg.payload=def;\n    return msg;\n}\n}\nreturn null;",
+        "func": "var drh = msg.payload;\nif(drh == \"on\"){\n    msg.payload = 'true';\n}else if(drh == \"off\"){\n        msg.payload = 'false';\n}else if(drh == \"auto\"){\n    msg.payload = 'false';\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "initialize": "",
@@ -9088,10 +9970,12 @@
         "y": 380,
         "wires": [
             [
-                "7389942d.224bbc"
+                "7389942d.224bbc",
+                "7d5d3b7ebc5e3ab6"
             ],
             [
-                "bac2361c.9378f8"
+                "bac2361c.9378f8",
+                "7d5d3b7ebc5e3ab6"
             ]
         ]
     },
@@ -9105,7 +9989,7 @@
                 "t": "set",
                 "p": "payload",
                 "pt": "msg",
-                "to": "Vypnuta",
+                "to": "Vypnute",
                 "tot": "str"
             }
         ],
@@ -9247,16 +10131,16 @@
         "type": "ui_template",
         "z": "41699c29.520954",
         "group": "de2505cd.6c5ad8",
-        "name": "Vonok_template_1",
-        "order": 27,
-        "width": 1,
+        "name": "Vonok_tlacitko_zapnut",
+        "order": 23,
+        "width": 4,
         "height": 1,
-        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n</style>\n<md-button class=\"filled rounded\"\n   style=\"background-color:#30833A\"\n    ng-click=\"send({payload: 'on', topic: 'dsh'})\"> \n    ON\n</md-button>",
+        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n</style>\n<md-button class=\"filled rounded\"\n   style=\"background-color:#30833A\"\n    ng-click=\"send({payload: 'on', topic: 'dsh'})\"> \n    ZAPNÚŤ\n</md-button>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
-        "x": 270,
+        "x": 280,
         "y": 180,
         "wires": [
             [
@@ -9271,21 +10155,22 @@
         "type": "ui_template",
         "z": "41699c29.520954",
         "group": "de2505cd.6c5ad8",
-        "name": "Vonok_template_2",
-        "order": 28,
-        "width": 1,
+        "name": "Vonok_tlacitko_auto",
+        "order": 24,
+        "width": 4,
         "height": 1,
         "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n  \n.highlight {\n    background-color: yellow !important;\n}\n \n</style>\n<md-button class=\"filled rounded\"\n   style=\"background-color:#61BCE1\"\n    ng-click=\"send({payload: 'auto', topic: 'dsh'})\"> \n    AUTO\n</md-button>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
-        "x": 270,
+        "x": 280,
         "y": 240,
         "wires": [
             [
                 "4199d4fe.ecb6dc",
-                "5de9ba2b.0073b4"
+                "5de9ba2b.0073b4",
+                "e6ba7268.dc2a9"
             ]
         ]
     },
@@ -9294,16 +10179,16 @@
         "type": "ui_template",
         "z": "41699c29.520954",
         "group": "de2505cd.6c5ad8",
-        "name": "Vonok_template_3",
-        "order": 29,
-        "width": 1,
+        "name": "Vonok_tlacitko_vypnut",
+        "order": 25,
+        "width": 4,
         "height": 1,
-        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n    \n.nr-dashboard-template {\n      padding: 0;\n      margin: 0;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n  .highlight {\n    background-color: yellow !important;\n}\n \n.images {\n    background-size: 100% 100%;\n    background-repeat: no-repeat; \n    }\n     \n.highlight-image {\n    background-image: var(--myHighlight) !important;\n}\n</style>\n<md-button class=\"vibrate filled touched rounded\"\n   style=\"background-color:#C9342F\"\n    ng-click=\"send({payload: 'off', topic: 'dsh'})\"> \n    OFF\n</md-button>",
+        "format": "<style>\n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n  }\n   \n.filled { \n      height: 100% !important;\n      padding: 0 !important;\n      margin: 0 !important;\n      //background-color: transparent !important;\n  }\n    \n.nr-dashboard-template {\n      padding: 0;\n      margin: 0;\n  }\n   \n.rounded {\n    border-radius: 10px 10px 10px 10px;\n    font-size: 18px;\n}\n  .highlight {\n    background-color: yellow !important;\n}\n \n.images {\n    background-size: 100% 100%;\n    background-repeat: no-repeat; \n    }\n     \n.highlight-image {\n    background-image: var(--myHighlight) !important;\n}\n</style>\n<md-button class=\"vibrate filled touched rounded\"\n   style=\"background-color:#C9342F\"\n    ng-click=\"send({payload: 'off', topic: 'dsh'})\"> \n    VYPNÚŤ\n</md-button>",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
-        "x": 270,
+        "x": 280,
         "y": 300,
         "wires": [
             [
@@ -9317,11 +10202,11 @@
         "id": "4199d4fe.ecb6dc",
         "type": "ui_led",
         "z": "41699c29.520954",
-        "order": 26,
+        "order": 22,
         "group": "de2505cd.6c5ad8",
-        "width": 3,
+        "width": 1,
         "height": 1,
-        "label": "Vonok",
+        "label": "",
         "labelPlacement": "left",
         "labelAlignment": "left",
         "colorForValue": [
@@ -9342,9 +10227,9 @@
             }
         ],
         "allowColorForValueInMessage": false,
-        "shape": "circle",
+        "shape": "square",
         "showGlow": true,
-        "name": "Venek_led",
+        "name": "Vonok_led",
         "x": 510,
         "y": 160,
         "wires": []
@@ -9375,7 +10260,7 @@
         "y": 500,
         "wires": [
             [
-                "e6ba7268.dc2a9"
+                "715e64658849da69"
             ],
             [
                 "9ee30e13.1f7c7"
@@ -9523,6 +10408,161 @@
         "wires": [
             [
                 "2e9a8fcc.539f9"
+            ]
+        ]
+    },
+    {
+        "id": "7d5d3b7ebc5e3ab6",
+        "type": "ui_led",
+        "z": "41699c29.520954",
+        "order": 21,
+        "group": "de2505cd.6c5ad8",
+        "width": 4,
+        "height": 1,
+        "label": "Vonkajšie priestory",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#0db50d",
+                "value": "true",
+                "valueType": "str"
+            },
+            {
+                "color": "#959795",
+                "value": "false",
+                "valueType": "str"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "Svetlo_vonok",
+        "x": 1040,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "7f0562e8a63aa7f5",
+        "type": "change",
+        "z": "41699c29.520954",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "false",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 760,
+        "y": 780,
+        "wires": [
+            [
+                "525f038f.86ffcc"
+            ]
+        ]
+    },
+    {
+        "id": "1c0a4cb09451a85f",
+        "type": "delay",
+        "z": "41699c29.520954",
+        "name": "",
+        "pauseType": "delay",
+        "timeout": "10",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 560,
+        "y": 760,
+        "wires": [
+            [
+                "7f0562e8a63aa7f5"
+            ]
+        ]
+    },
+    {
+        "id": "1cfbbbd7e5585bec",
+        "type": "change",
+        "z": "41699c29.520954",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "true",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 380,
+        "y": 780,
+        "wires": [
+            [
+                "1c0a4cb09451a85f",
+                "525f038f.86ffcc"
+            ]
+        ]
+    },
+    {
+        "id": "715e64658849da69",
+        "type": "function",
+        "z": "41699c29.520954",
+        "name": "",
+        "func": "var def = flow.get(\"state\");\nif(def == \"auto\"){\n    return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 700,
+        "wires": [
+            [
+                "1cfbbbd7e5585bec"
+            ]
+        ]
+    },
+    {
+        "id": "f577fb4e8e1f90a1",
+        "type": "inject",
+        "z": "41699c29.520954",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "auto",
+        "payloadType": "str",
+        "x": 70,
+        "y": 240,
+        "wires": [
+            [
+                "cac7d7cb.09a2e8"
             ]
         ]
     }
