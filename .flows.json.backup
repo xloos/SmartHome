@@ -2,21 +2,21 @@
     {
         "id": "ee2cc422.c24f08",
         "type": "tab",
-        "label": "Broker",
+        "label": "MQTT Broker",
         "disabled": false,
         "info": ""
     },
     {
         "id": "d4742671.796ed8",
         "type": "tab",
-        "label": "Senzory_pohybu_a_osvetlenia",
+        "label": "Senzory_pohybu_a_svetla",
         "disabled": false,
         "info": ""
     },
     {
         "id": "99f59708.7c3cc8",
         "type": "tab",
-        "label": "Senzory_zabezpecenia",
+        "label": "Zabezpečenie",
         "disabled": false,
         "info": ""
     },
@@ -91,19 +91,25 @@
         "broker": "localhost",
         "port": "1884",
         "clientid": "",
+        "autoConnect": true,
         "usetls": false,
         "compatmode": false,
+        "protocolVersion": "4",
         "keepalive": "60",
         "cleansession": true,
         "birthTopic": "",
         "birthQos": "0",
         "birthPayload": "",
+        "birthMsg": {},
         "closeTopic": "",
         "closeQos": "0",
         "closePayload": "",
+        "closeMsg": {},
         "willTopic": "",
         "willQos": "0",
-        "willPayload": ""
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
     },
     {
         "id": "93e22d43.aaa6d",
@@ -243,7 +249,7 @@
     {
         "id": "4da70d94.c48a04",
         "type": "ui_group",
-        "name": "Zabezpecenie - senzory pohybu",
+        "name": "Zabezpečenie - senzory pohybu",
         "tab": "b7eecb1a.674ce8",
         "order": 2,
         "disp": true,
@@ -389,7 +395,7 @@
     {
         "id": "72b45707.294b78",
         "type": "ui_group",
-        "name": "Kúrenie",
+        "name": "Ovládanie teploty",
         "tab": "7f07accb.75be34",
         "order": 1,
         "disp": true,
@@ -536,7 +542,7 @@
     {
         "id": "026ff6b53224193f",
         "type": "ui_group",
-        "name": "Zabezpecenie - senzory zvuku",
+        "name": "Zabezpečenie - senzory zvuku",
         "tab": "b7eecb1a.674ce8",
         "order": 3,
         "disp": true,
@@ -581,27 +587,6 @@
         "collapse": false
     },
     {
-        "id": "ad51e5f3.451568",
-        "type": "aedes broker",
-        "z": "ee2cc422.c24f08",
-        "name": "Broker",
-        "mqtt_port": "1884",
-        "mqtt_ws_bind": "port",
-        "mqtt_ws_port": "",
-        "mqtt_ws_path": "",
-        "cert": "",
-        "key": "",
-        "certname": "",
-        "keyname": "",
-        "dburl": "",
-        "usetls": false,
-        "x": 130,
-        "y": 120,
-        "wires": [
-            []
-        ]
-    },
-    {
         "id": "4feaa248c2e78c4d",
         "type": "function",
         "z": "ee2cc422.c24f08",
@@ -612,8 +597,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 360,
-        "y": 320,
+        "x": 500,
+        "y": 140,
         "wires": [
             [
                 "dc3f7cc7f48ac567"
@@ -641,8 +626,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 160,
-        "y": 320,
+        "x": 300,
+        "y": 140,
         "wires": [
             [
                 "4feaa248c2e78c4d"
@@ -658,11 +643,12 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "payload",
+        "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 550,
-        "y": 320,
+        "x": 670,
+        "y": 140,
         "wires": []
     },
     {
@@ -671,9 +657,30 @@
         "z": "ee2cc422.c24f08",
         "name": "Zistovanie globálných premenných",
         "info": "",
-        "x": 320,
-        "y": 260,
+        "x": 420,
+        "y": 60,
         "wires": []
+    },
+    {
+        "id": "6f89abe2d23d0e92",
+        "type": "aedes broker",
+        "z": "ee2cc422.c24f08",
+        "name": "Broker",
+        "mqtt_port": "1884",
+        "mqtt_ws_bind": "port",
+        "mqtt_ws_port": "",
+        "mqtt_ws_path": "",
+        "cert": "",
+        "key": "",
+        "certname": "",
+        "keyname": "",
+        "dburl": "",
+        "usetls": false,
+        "x": 110,
+        "y": 80,
+        "wires": [
+            []
+        ]
     },
     {
         "id": "6c8e5bf6.892624",
@@ -839,8 +846,8 @@
         "correl": "",
         "expiry": "",
         "broker": "30f5ccb2.518334",
-        "x": 810,
-        "y": 800,
+        "x": 790,
+        "y": 580,
         "wires": []
     },
     {
@@ -861,7 +868,7 @@
         "payload": "true",
         "payloadType": "bool",
         "x": 450,
-        "y": 760,
+        "y": 540,
         "wires": [
             [
                 "5ba82f8d.cad1c"
@@ -874,8 +881,8 @@
         "z": "d4742671.796ed8",
         "name": "Senzor pohybu v obyvácej izbe",
         "info": "",
-        "x": 480,
-        "y": 680,
+        "x": 470,
+        "y": 480,
         "wires": []
     },
     {
@@ -896,81 +903,10 @@
         "payload": "false",
         "payloadType": "bool",
         "x": 450,
-        "y": 820,
+        "y": 600,
         "wires": [
             [
                 "5ba82f8d.cad1c"
-            ]
-        ]
-    },
-    {
-        "id": "921c3b89.202158",
-        "type": "comment",
-        "z": "d4742671.796ed8",
-        "name": "Senzor intenzity svetla v obyvacim pokoji",
-        "info": "",
-        "x": 520,
-        "y": 500,
-        "wires": []
-    },
-    {
-        "id": "a58c003.a8565",
-        "type": "mqtt out",
-        "z": "d4742671.796ed8",
-        "name": "Intenzita_obyvacka",
-        "topic": "home/obyvacka/intenzita",
-        "qos": "0",
-        "retain": "",
-        "respTopic": "",
-        "contentType": "",
-        "userProps": "",
-        "correl": "",
-        "expiry": "",
-        "broker": "30f5ccb2.518334",
-        "x": 910,
-        "y": 600,
-        "wires": []
-    },
-    {
-        "id": "b75acc5e.859d1",
-        "type": "function",
-        "z": "d4742671.796ed8",
-        "name": "",
-        "func": "var hod = global.get(\"zarovka\");\nvar rozmer = 15;\nvar vysl = 300;\nvar poc = 0;\nvar kon = 0;\nif(hod == 3){\n    poc=(205*4)/rozmer;\n    kon = (100*300)/poc;\n    if(kon > 100){\n        msg.payload=100;\n    }else{\n        msg.payload=kon.toFixed(2);\n    }\n}else if(hod == 5){\n    poc=(425*4)/rozmer;\n        kon = (100*300)/poc;\n    if(kon > 100){\n        msg.payload=100;\n    }else{\n        msg.payload=kon.toFixed(2);\n    }\n    \n}else if(hod == 9){\n    poc=(720*4)/rozmer;\n        kon = (100*300)/poc;\n    if(kon > 100){\n        msg.payload=100;\n    }else{\n        msg.payload=kon.toFixed(2);\n    }\n    \n}else if(hod == 15){\n    poc=(1400*4)/rozmer;\n        kon = (100*300)/poc;\n    if(kon > 100){\n        msg.payload=100;\n    }else{\n        msg.payload=kon.toFixed(2);\n    }\n}\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "x": 660,
-        "y": 600,
-        "wires": [
-            [
-                "a58c003.a8565"
-            ]
-        ]
-    },
-    {
-        "id": "30639b1b.933034",
-        "type": "inject",
-        "z": "d4742671.796ed8",
-        "name": "",
-        "props": [
-            {
-                "p": "payload"
-            }
-        ],
-        "repeat": "5",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "topic": "",
-        "payload": "",
-        "payloadType": "date",
-        "x": 450,
-        "y": 600,
-        "wires": [
-            [
-                "b75acc5e.859d1"
             ]
         ]
     },
@@ -989,7 +925,7 @@
         "expiry": "",
         "broker": "30f5ccb2.518334",
         "x": 800,
-        "y": 1240,
+        "y": 820,
         "wires": []
     },
     {
@@ -1010,7 +946,7 @@
         "payload": "true",
         "payloadType": "bool",
         "x": 440,
-        "y": 1200,
+        "y": 780,
         "wires": [
             [
                 "cbc7364.47d16c8"
@@ -1023,8 +959,8 @@
         "z": "d4742671.796ed8",
         "name": "Senzor pohybu v spálni",
         "info": "",
-        "x": 460,
-        "y": 1120,
+        "x": 440,
+        "y": 700,
         "wires": []
     },
     {
@@ -1045,7 +981,7 @@
         "payload": "false",
         "payloadType": "bool",
         "x": 440,
-        "y": 1260,
+        "y": 840,
         "wires": [
             [
                 "cbc7364.47d16c8"
@@ -1067,7 +1003,7 @@
         "expiry": "",
         "broker": "30f5ccb2.518334",
         "x": 780,
-        "y": 1640,
+        "y": 1220,
         "wires": []
     },
     {
@@ -1088,7 +1024,7 @@
         "payload": "true",
         "payloadType": "bool",
         "x": 440,
-        "y": 1620,
+        "y": 1200,
         "wires": [
             [
                 "cf144cdc.f7a69"
@@ -1102,7 +1038,7 @@
         "name": "Senzor pohybu v kúpelni",
         "info": "",
         "x": 470,
-        "y": 1540,
+        "y": 1120,
         "wires": []
     },
     {
@@ -1123,7 +1059,7 @@
         "payload": "false",
         "payloadType": "bool",
         "x": 440,
-        "y": 1680,
+        "y": 1260,
         "wires": [
             [
                 "cf144cdc.f7a69"
@@ -1137,7 +1073,7 @@
         "name": "Senzor intenzity svetla v kúpelni",
         "info": "",
         "x": 490,
-        "y": 1360,
+        "y": 940,
         "wires": []
     },
     {
@@ -1155,7 +1091,7 @@
         "expiry": "",
         "broker": "30f5ccb2.518334",
         "x": 920,
-        "y": 1460,
+        "y": 1040,
         "wires": []
     },
     {
@@ -1169,7 +1105,7 @@
         "initialize": "",
         "finalize": "",
         "x": 640,
-        "y": 1460,
+        "y": 1040,
         "wires": [
             [
                 "85ed9972.bc0478"
@@ -1194,7 +1130,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 440,
-        "y": 1460,
+        "y": 1040,
         "wires": [
             [
                 "c8caba51.8e76a8"
@@ -1216,7 +1152,7 @@
         "expiry": "",
         "broker": "30f5ccb2.518334",
         "x": 770,
-        "y": 2100,
+        "y": 1680,
         "wires": []
     },
     {
@@ -1237,7 +1173,7 @@
         "payload": "true",
         "payloadType": "bool",
         "x": 420,
-        "y": 2060,
+        "y": 1640,
         "wires": [
             [
                 "cfdd3e9c.d1e38"
@@ -1251,7 +1187,7 @@
         "name": "Senzor pohybu v garazi",
         "info": "",
         "x": 440,
-        "y": 1980,
+        "y": 1560,
         "wires": []
     },
     {
@@ -1272,7 +1208,7 @@
         "payload": "false",
         "payloadType": "bool",
         "x": 420,
-        "y": 2120,
+        "y": 1700,
         "wires": [
             [
                 "cfdd3e9c.d1e38"
@@ -1286,7 +1222,7 @@
         "name": "Senzor intenzity svetla v garazi",
         "info": "",
         "x": 470,
-        "y": 1800,
+        "y": 1380,
         "wires": []
     },
     {
@@ -1304,7 +1240,7 @@
         "expiry": "",
         "broker": "30f5ccb2.518334",
         "x": 890,
-        "y": 1900,
+        "y": 1480,
         "wires": []
     },
     {
@@ -1317,8 +1253,9 @@
         "noerr": 0,
         "initialize": "",
         "finalize": "",
+        "libs": [],
         "x": 620,
-        "y": 1900,
+        "y": 1480,
         "wires": [
             [
                 "4c53eee6.d9b12"
@@ -1343,7 +1280,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 420,
-        "y": 1900,
+        "y": 1480,
         "wires": [
             [
                 "7edde8de.cf6a18"
@@ -1365,7 +1302,7 @@
         "expiry": "",
         "broker": "30f5ccb2.518334",
         "x": 780,
-        "y": 2520,
+        "y": 2100,
         "wires": []
     },
     {
@@ -1386,7 +1323,7 @@
         "payload": "true",
         "payloadType": "bool",
         "x": 420,
-        "y": 2480,
+        "y": 2060,
         "wires": [
             [
                 "ab40f9cc.860e68"
@@ -1400,7 +1337,7 @@
         "name": "Senzor pohybu vo vchode",
         "info": "",
         "x": 450,
-        "y": 2400,
+        "y": 1980,
         "wires": []
     },
     {
@@ -1421,7 +1358,7 @@
         "payload": "false",
         "payloadType": "bool",
         "x": 420,
-        "y": 2540,
+        "y": 2120,
         "wires": [
             [
                 "ab40f9cc.860e68"
@@ -1435,7 +1372,7 @@
         "name": "Senzor intenzity svetla vo vchode",
         "info": "",
         "x": 470,
-        "y": 2220,
+        "y": 1800,
         "wires": []
     },
     {
@@ -1453,7 +1390,7 @@
         "expiry": "",
         "broker": "30f5ccb2.518334",
         "x": 890,
-        "y": 2320,
+        "y": 1900,
         "wires": []
     },
     {
@@ -1467,7 +1404,7 @@
         "initialize": "",
         "finalize": "",
         "x": 620,
-        "y": 2320,
+        "y": 1900,
         "wires": [
             [
                 "89dcf8a1.7b4d88"
@@ -1492,7 +1429,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 420,
-        "y": 2320,
+        "y": 1900,
         "wires": [
             [
                 "716eac68.b0d074"
@@ -1514,7 +1451,7 @@
         "expiry": "",
         "broker": "30f5ccb2.518334",
         "x": 780,
-        "y": 2940,
+        "y": 2520,
         "wires": []
     },
     {
@@ -1535,7 +1472,7 @@
         "payload": "true",
         "payloadType": "bool",
         "x": 420,
-        "y": 2900,
+        "y": 2480,
         "wires": [
             [
                 "e244b026.48538"
@@ -1549,7 +1486,7 @@
         "name": "Senzor pohybu vonku",
         "info": "",
         "x": 440,
-        "y": 2820,
+        "y": 2400,
         "wires": []
     },
     {
@@ -1570,7 +1507,7 @@
         "payload": "false",
         "payloadType": "bool",
         "x": 420,
-        "y": 2960,
+        "y": 2540,
         "wires": [
             [
                 "e244b026.48538"
@@ -1584,7 +1521,7 @@
         "name": "Senzor intenzity svetla vonku",
         "info": "",
         "x": 460,
-        "y": 2640,
+        "y": 2220,
         "wires": []
     },
     {
@@ -1602,7 +1539,7 @@
         "expiry": "",
         "broker": "30f5ccb2.518334",
         "x": 890,
-        "y": 2740,
+        "y": 2320,
         "wires": []
     },
     {
@@ -1617,7 +1554,7 @@
         "finalize": "",
         "libs": [],
         "x": 620,
-        "y": 2740,
+        "y": 2320,
         "wires": [
             [
                 "ece0a43d.673c98"
@@ -1642,7 +1579,7 @@
         "payload": "",
         "payloadType": "date",
         "x": 420,
-        "y": 2740,
+        "y": 2320,
         "wires": [
             [
                 "2d9b0c4.aec97f4"
@@ -1670,7 +1607,7 @@
         "topic": "",
         "payload": "3",
         "payloadType": "num",
-        "x": 1310,
+        "x": 1130,
         "y": 100,
         "wires": [
             [
@@ -1699,7 +1636,7 @@
         "topic": "",
         "payload": "5",
         "payloadType": "num",
-        "x": 1310,
+        "x": 1130,
         "y": 160,
         "wires": [
             [
@@ -1728,7 +1665,7 @@
         "topic": "",
         "payload": "9",
         "payloadType": "num",
-        "x": 1310,
+        "x": 1130,
         "y": 220,
         "wires": [
             [
@@ -1757,7 +1694,7 @@
         "topic": "",
         "payload": "15",
         "payloadType": "num",
-        "x": 1310,
+        "x": 1130,
         "y": 280,
         "wires": [
             [
@@ -1771,7 +1708,7 @@
         "z": "d4742671.796ed8",
         "name": "Vyber ziaroviek",
         "info": "",
-        "x": 1370,
+        "x": 1200,
         "y": 40,
         "wires": []
     },
@@ -1794,7 +1731,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1690,
+        "x": 1390,
         "y": 200,
         "wires": [
             []
@@ -1812,7 +1749,7 @@
         "nl": false,
         "rap": false,
         "inputs": 0,
-        "x": 1310,
+        "x": 1100,
         "y": 480,
         "wires": [
             [
@@ -1831,7 +1768,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1530,
+        "x": 1360,
         "y": 480,
         "wires": [
             [
@@ -1858,7 +1795,7 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1720,
+        "x": 1580,
         "y": 480,
         "wires": [
             [
@@ -1898,7 +1835,7 @@
         "z": "d4742671.796ed8",
         "name": "Zobrazenie aktualnej spotreby",
         "info": "",
-        "x": 1380,
+        "x": 1500,
         "y": 420,
         "wires": []
     },
@@ -1924,7 +1861,7 @@
         ],
         "seg1": "",
         "seg2": "",
-        "x": 2340,
+        "x": 1960,
         "y": 640,
         "wires": []
     },
@@ -1939,7 +1876,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1940,
+        "x": 1520,
         "y": 640,
         "wires": [
             [
@@ -1959,7 +1896,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1440,
+        "x": 1320,
         "y": 640,
         "wires": [
             [
@@ -1988,7 +1925,7 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 1210,
+        "x": 1130,
         "y": 640,
         "wires": [
             [
@@ -2013,7 +1950,7 @@
         "drop": true,
         "allowrate": false,
         "outputs": 1,
-        "x": 1930,
+        "x": 1510,
         "y": 720,
         "wires": [
             [
@@ -2042,7 +1979,7 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 1150,
+        "x": 1070,
         "y": 360,
         "wires": [
             [
@@ -2061,7 +1998,7 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1380,
+        "x": 1240,
         "y": 360,
         "wires": [
             [
@@ -2088,8 +2025,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 2020,
-        "y": 320,
+        "x": 1760,
+        "y": 80,
         "wires": [
             []
         ]
@@ -2105,8 +2042,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1800,
-        "y": 340,
+        "x": 1560,
+        "y": 80,
         "wires": [
             [
                 "a5932cc6726ead77"
@@ -2134,8 +2071,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 1630,
-        "y": 340,
+        "x": 1370,
+        "y": 80,
         "wires": [
             [
                 "b008ddf76acab0b9"
@@ -2148,8 +2085,8 @@
         "z": "d4742671.796ed8",
         "name": "Zobrazenie celkovej spotreby v kWh",
         "info": "",
-        "x": 1572,
-        "y": 570,
+        "x": 1500,
+        "y": 580,
         "wires": []
     },
     {
@@ -2166,8 +2103,8 @@
         "correl": "",
         "expiry": "",
         "broker": "30f5ccb2.518334",
-        "x": 780,
-        "y": 480,
+        "x": 480,
+        "y": 180,
         "wires": []
     },
     {
@@ -2187,8 +2124,8 @@
         "topic": "",
         "payload": "true",
         "payloadType": "bool",
-        "x": 440,
-        "y": 400,
+        "x": 140,
+        "y": 100,
         "wires": [
             [
                 "5590fe46.d200c"
@@ -2212,8 +2149,8 @@
         "topic": "",
         "payload": "false",
         "payloadType": "bool",
-        "x": 440,
-        "y": 500,
+        "x": 140,
+        "y": 200,
         "wires": [
             [
                 "5590fe46.d200c"
@@ -2237,8 +2174,8 @@
         "topic": "",
         "payload": "false",
         "payloadType": "bool",
-        "x": 470,
-        "y": 220,
+        "x": 750,
+        "y": 180,
         "wires": [
             [
                 "1544b644.ca1a9a",
@@ -2260,8 +2197,8 @@
         "correl": "",
         "expiry": "",
         "broker": "30f5ccb2.518334",
-        "x": 850,
-        "y": 240,
+        "x": 1130,
+        "y": 200,
         "wires": []
     },
     {
@@ -2278,8 +2215,8 @@
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
-        "x": 600,
-        "y": 260,
+        "x": 880,
+        "y": 220,
         "wires": [
             [
                 "1544b644.ca1a9a",
@@ -2301,8 +2238,8 @@
         "fwdInMessages": true,
         "resendOnRefresh": true,
         "templateScope": "local",
-        "x": 610,
-        "y": 160,
+        "x": 890,
+        "y": 120,
         "wires": [
             [
                 "1544b644.ca1a9a",
@@ -2314,7 +2251,7 @@
         "id": "f10077d2.9186c8",
         "type": "mqtt out",
         "z": "99f59708.7c3cc8",
-        "name": "Zadni_dvere",
+        "name": "Zadne_dvere",
         "topic": "home/dvere/zadne",
         "qos": "2",
         "retain": "",
@@ -2324,8 +2261,8 @@
         "correl": "",
         "expiry": "",
         "broker": "30f5ccb2.518334",
-        "x": 770,
-        "y": 720,
+        "x": 470,
+        "y": 440,
         "wires": []
     },
     {
@@ -2345,8 +2282,8 @@
         "topic": "",
         "payload": "true",
         "payloadType": "bool",
-        "x": 440,
-        "y": 640,
+        "x": 140,
+        "y": 360,
         "wires": [
             [
                 "f10077d2.9186c8"
@@ -2370,8 +2307,8 @@
         "topic": "",
         "payload": "false",
         "payloadType": "bool",
-        "x": 440,
-        "y": 740,
+        "x": 140,
+        "y": 460,
         "wires": [
             [
                 "f10077d2.9186c8"
@@ -2392,8 +2329,8 @@
         "correl": "",
         "expiry": "",
         "broker": "30f5ccb2.518334",
-        "x": 850,
-        "y": 180,
+        "x": 1130,
+        "y": 140,
         "wires": []
     },
     {
@@ -2410,8 +2347,8 @@
         "correl": "",
         "expiry": "",
         "broker": "30f5ccb2.518334",
-        "x": 750,
-        "y": 1240,
+        "x": 450,
+        "y": 920,
         "wires": []
     },
     {
@@ -2431,8 +2368,8 @@
         "topic": "",
         "payload": "true",
         "payloadType": "bool",
-        "x": 440,
-        "y": 1160,
+        "x": 140,
+        "y": 840,
         "wires": [
             [
                 "62ae8521.d16b2c"
@@ -2456,8 +2393,8 @@
         "topic": "",
         "payload": "false",
         "payloadType": "bool",
-        "x": 440,
-        "y": 1260,
+        "x": 140,
+        "y": 940,
         "wires": [
             [
                 "62ae8521.d16b2c"
@@ -2470,8 +2407,8 @@
         "z": "99f59708.7c3cc8",
         "name": "Zamknutie alebo odomknutie celého domu",
         "info": "",
-        "x": 540,
-        "y": 80,
+        "x": 820,
+        "y": 40,
         "wires": []
     },
     {
@@ -2480,8 +2417,8 @@
         "z": "99f59708.7c3cc8",
         "name": "Zamknutie alebo odomknutie predných dverí",
         "info": "",
-        "x": 550,
-        "y": 340,
+        "x": 250,
+        "y": 40,
         "wires": []
     },
     {
@@ -2490,8 +2427,8 @@
         "z": "99f59708.7c3cc8",
         "name": "Zamknutie alebo odomknutie zadných dverí",
         "info": "",
-        "x": 550,
-        "y": 580,
+        "x": 250,
+        "y": 300,
         "wires": []
     },
     {
@@ -2500,8 +2437,8 @@
         "z": "99f59708.7c3cc8",
         "name": "Zamknutie alebo odomknutie okien",
         "info": "",
-        "x": 500,
-        "y": 1100,
+        "x": 200,
+        "y": 780,
         "wires": []
     },
     {
@@ -2525,8 +2462,8 @@
         "topic": "",
         "payload": "true",
         "payloadType": "bool",
-        "x": 440,
-        "y": 1740,
+        "x": 760,
+        "y": 380,
         "wires": [
             [
                 "f4e54f36.55952",
@@ -2540,8 +2477,8 @@
         "z": "99f59708.7c3cc8",
         "name": "Príchod alebo odchod osoby1",
         "info": "",
-        "x": 460,
-        "y": 1660,
+        "x": 780,
+        "y": 300,
         "wires": []
     },
     {
@@ -2565,8 +2502,8 @@
         "topic": "",
         "payload": "false",
         "payloadType": "bool",
-        "x": 440,
-        "y": 1840,
+        "x": 760,
+        "y": 480,
         "wires": [
             [
                 "f4e54f36.55952",
@@ -2588,8 +2525,8 @@
         "correl": "",
         "expiry": "",
         "broker": "30f5ccb2.518334",
-        "x": 730,
-        "y": 1780,
+        "x": 1050,
+        "y": 420,
         "wires": []
     },
     {
@@ -2613,8 +2550,8 @@
         "topic": "",
         "payload": "true",
         "payloadType": "bool",
-        "x": 440,
-        "y": 2040,
+        "x": 760,
+        "y": 680,
         "wires": [
             [
                 "f36c9d93.24101",
@@ -2628,8 +2565,8 @@
         "z": "99f59708.7c3cc8",
         "name": "Príchod alebo odchod osoby2",
         "info": "",
-        "x": 460,
-        "y": 1960,
+        "x": 780,
+        "y": 600,
         "wires": []
     },
     {
@@ -2653,8 +2590,8 @@
         "topic": "",
         "payload": "false",
         "payloadType": "bool",
-        "x": 440,
-        "y": 2140,
+        "x": 760,
+        "y": 780,
         "wires": [
             [
                 "f36c9d93.24101",
@@ -2676,8 +2613,8 @@
         "correl": "",
         "expiry": "",
         "broker": "30f5ccb2.518334",
-        "x": 730,
-        "y": 2080,
+        "x": 1050,
+        "y": 720,
         "wires": []
     },
     {
@@ -2699,8 +2636,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 740,
-        "y": 2020,
+        "x": 1060,
+        "y": 660,
         "wires": [
             []
         ]
@@ -2724,8 +2661,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 740,
-        "y": 1720,
+        "x": 1060,
+        "y": 360,
         "wires": [
             []
         ]
@@ -2744,8 +2681,8 @@
         "correl": "",
         "expiry": "",
         "broker": "30f5ccb2.518334",
-        "x": 770,
-        "y": 980,
+        "x": 470,
+        "y": 660,
         "wires": []
     },
     {
@@ -2765,8 +2702,8 @@
         "topic": "",
         "payload": "true",
         "payloadType": "bool",
-        "x": 440,
-        "y": 900,
+        "x": 140,
+        "y": 580,
         "wires": [
             [
                 "6d485057.86691"
@@ -2790,8 +2727,8 @@
         "topic": "",
         "payload": "false",
         "payloadType": "bool",
-        "x": 440,
-        "y": 1000,
+        "x": 140,
+        "y": 680,
         "wires": [
             [
                 "6d485057.86691"
@@ -2804,8 +2741,8 @@
         "z": "99f59708.7c3cc8",
         "name": "Zamknutie alebo odomknutie dverí z garáže",
         "info": "",
-        "x": 510,
-        "y": 840,
+        "x": 210,
+        "y": 520,
         "wires": []
     },
     {
@@ -2820,8 +2757,8 @@
         "nl": false,
         "rap": false,
         "inputs": 0,
-        "x": 420,
-        "y": 1420,
+        "x": 120,
+        "y": 1100,
         "wires": [
             [
                 "4279ec8.a867614"
@@ -2842,8 +2779,8 @@
         "correl": "",
         "expiry": "",
         "broker": "30f5ccb2.518334",
-        "x": 770,
-        "y": 1420,
+        "x": 470,
+        "y": 1100,
         "wires": []
     },
     {
@@ -2867,8 +2804,8 @@
         "topic": "",
         "payload": "false",
         "payloadType": "bool",
-        "x": 430,
-        "y": 1900,
+        "x": 750,
+        "y": 540,
         "wires": [
             [
                 "f4e54f36.55952",
@@ -2901,8 +2838,8 @@
         "officon": "",
         "offcolor": "",
         "animate": false,
-        "x": 250,
-        "y": 200,
+        "x": 270,
+        "y": 40,
         "wires": [
             [
                 "a46bb92e4e462698"
@@ -2936,8 +2873,8 @@
         "shape": "circle",
         "showGlow": true,
         "name": "",
-        "x": 610,
-        "y": 360,
+        "x": 590,
+        "y": 100,
         "wires": []
     },
     {
@@ -2967,8 +2904,8 @@
         "shape": "circle",
         "showGlow": true,
         "name": "",
-        "x": 610,
-        "y": 500,
+        "x": 590,
+        "y": 240,
         "wires": []
     },
     {
@@ -2990,8 +2927,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 480,
-        "y": 200,
+        "x": 500,
+        "y": 40,
         "wires": [
             []
         ]
@@ -3013,8 +2950,8 @@
         "topic": "",
         "payload": "true",
         "payloadType": "bool",
-        "x": 160,
-        "y": 360,
+        "x": 140,
+        "y": 100,
         "wires": [
             [
                 "7b95b92ae7a285a7"
@@ -3038,8 +2975,8 @@
         "topic": "",
         "payload": "true",
         "payloadType": "bool",
-        "x": 170,
-        "y": 500,
+        "x": 150,
+        "y": 240,
         "wires": [
             [
                 "bfba267b60e661f8"
@@ -3057,8 +2994,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 740,
-        "y": 420,
+        "x": 720,
+        "y": 160,
         "wires": [
             [
                 "6b3771ca9922ae60",
@@ -3080,8 +3017,8 @@
         "correl": "",
         "expiry": "",
         "broker": "30f5ccb2.518334",
-        "x": 890,
-        "y": 360,
+        "x": 870,
+        "y": 100,
         "wires": []
     },
     {
@@ -3098,8 +3035,8 @@
         "correl": "",
         "expiry": "",
         "broker": "30f5ccb2.518334",
-        "x": 890,
-        "y": 460,
+        "x": 870,
+        "y": 200,
         "wires": []
     },
     {
@@ -3113,8 +3050,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 380,
-        "y": 360,
+        "x": 360,
+        "y": 100,
         "wires": [
             [
                 "81df208a9400f9a0",
@@ -3134,8 +3071,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 398,
-        "y": 501,
+        "x": 378,
+        "y": 241,
         "wires": [
             [
                 "665b5eb9a760d835",
@@ -3161,8 +3098,8 @@
         "bytopic": "all",
         "topic": "topic",
         "outputs": 1,
-        "x": 490,
-        "y": 440,
+        "x": 470,
+        "y": 180,
         "wires": [
             [
                 "81df208a9400f9a0"
@@ -3186,8 +3123,8 @@
         "bytopic": "all",
         "topic": "topic",
         "outputs": 1,
-        "x": 510,
-        "y": 580,
+        "x": 490,
+        "y": 320,
         "wires": [
             [
                 "665b5eb9a760d835"
@@ -3206,8 +3143,8 @@
         "nl": false,
         "rap": false,
         "inputs": 0,
-        "x": 230,
-        "y": 240,
+        "x": 110,
+        "y": 80,
         "wires": [
             [
                 "e754dd87.f5c19"
@@ -3241,8 +3178,8 @@
         "shape": "circle",
         "showGlow": true,
         "name": "Led_dom",
-        "x": 1180,
-        "y": 220,
+        "x": 1060,
+        "y": 60,
         "wires": []
     },
     {
@@ -3267,8 +3204,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 590,
-        "y": 240,
+        "x": 470,
+        "y": 80,
         "wires": [
             [
                 "94e3d9a6.d77338"
@@ -3297,8 +3234,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 780,
-        "y": 200,
+        "x": 660,
+        "y": 40,
         "wires": [
             [
                 "8e031c83.fe564",
@@ -3325,8 +3262,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 780,
-        "y": 280,
+        "x": 660,
+        "y": 120,
         "wires": [
             [
                 "624f56fc.241d58"
@@ -3360,8 +3297,8 @@
         "shape": "circle",
         "showGlow": true,
         "name": "Led_vonok",
-        "x": 870,
-        "y": 800,
+        "x": 750,
+        "y": 640,
         "wires": []
     },
     {
@@ -3386,8 +3323,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 290,
-        "y": 820,
+        "x": 170,
+        "y": 660,
         "wires": [
             [
                 "d92de393.fb4e1"
@@ -3416,8 +3353,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 480,
-        "y": 780,
+        "x": 360,
+        "y": 620,
         "wires": [
             [
                 "905a1248.1d13a",
@@ -3445,8 +3382,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 460,
-        "y": 860,
+        "x": 340,
+        "y": 700,
         "wires": [
             [
                 "e98425a7.e6fe38"
@@ -3480,8 +3417,8 @@
         "checkall": "false",
         "repair": false,
         "outputs": 3,
-        "x": 410,
-        "y": 240,
+        "x": 290,
+        "y": 80,
         "wires": [
             [
                 "809dc46f.d0b4f8"
@@ -3521,8 +3458,8 @@
         "shape": "square",
         "showGlow": true,
         "name": "Led_uzivatel",
-        "x": 730,
-        "y": 1060,
+        "x": 610,
+        "y": 900,
         "wires": []
     },
     {
@@ -3552,8 +3489,8 @@
         "shape": "circle",
         "showGlow": true,
         "name": "Led_garaz",
-        "x": 1170,
-        "y": 460,
+        "x": 1050,
+        "y": 300,
         "wires": []
     },
     {
@@ -3578,8 +3515,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 2,
-        "x": 590,
-        "y": 480,
+        "x": 470,
+        "y": 320,
         "wires": [
             [
                 "ac89c5a2.ee66a8"
@@ -3608,8 +3545,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 780,
-        "y": 440,
+        "x": 660,
+        "y": 280,
         "wires": [
             [
                 "2f7d171a.42ee88",
@@ -3637,8 +3574,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 760,
-        "y": 520,
+        "x": 640,
+        "y": 360,
         "wires": [
             [
                 "58232f4b.07cac"
@@ -3664,8 +3601,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 1040,
-        "y": 400,
+        "x": 920,
+        "y": 240,
         "wires": [
             [
                 "df4d3fa.b9c5dc"
@@ -3685,8 +3622,8 @@
         "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1300,
-        "y": 400,
+        "x": 1180,
+        "y": 240,
         "wires": []
     },
     {
@@ -3708,8 +3645,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 760,
-        "y": 740,
+        "x": 640,
+        "y": 580,
         "wires": [
             [
                 "3de44e12.14b712"
@@ -3728,8 +3665,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 1020,
-        "y": 740,
+        "x": 900,
+        "y": 580,
         "wires": []
     },
     {
@@ -3749,8 +3686,8 @@
         "bytopic": "all",
         "topic": "topic",
         "outputs": 1,
-        "x": 990,
-        "y": 280,
+        "x": 870,
+        "y": 120,
         "wires": [
             [
                 "8e031c83.fe564"
@@ -3774,8 +3711,8 @@
         "bytopic": "all",
         "topic": "topic",
         "outputs": 1,
-        "x": 970,
-        "y": 520,
+        "x": 850,
+        "y": 360,
         "wires": [
             [
                 "2f7d171a.42ee88"
@@ -3799,8 +3736,8 @@
         "bytopic": "all",
         "topic": "topic",
         "outputs": 1,
-        "x": 690,
-        "y": 860,
+        "x": 570,
+        "y": 700,
         "wires": [
             [
                 "905a1248.1d13a"
@@ -3819,8 +3756,8 @@
         "nl": false,
         "rap": false,
         "inputs": 0,
-        "x": 320,
-        "y": 1060,
+        "x": 200,
+        "y": 900,
         "wires": [
             [
                 "c2e6d49.7e36928"
@@ -3838,8 +3775,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 530,
-        "y": 1060,
+        "x": 410,
+        "y": 900,
         "wires": [
             [
                 "4490aebd.6321a",
@@ -3862,8 +3799,8 @@
         "correl": "",
         "expiry": "",
         "broker": "30f5ccb2.518334",
-        "x": 730,
-        "y": 1140,
+        "x": 610,
+        "y": 980,
         "wires": []
     },
     {
@@ -3880,8 +3817,8 @@
         "correl": "",
         "expiry": "",
         "broker": "30f5ccb2.518334",
-        "x": 730,
-        "y": 1200,
+        "x": 610,
+        "y": 1040,
         "wires": []
     },
     {
@@ -3890,8 +3827,8 @@
         "z": "60f966e1.dc16a8",
         "name": "Zisťovanie prítomnosti autorizovanej osoby a odomykanie/zamykanie ",
         "info": "",
-        "x": 500,
-        "y": 1000,
+        "x": 380,
+        "y": 840,
         "wires": []
     },
     {
@@ -4578,9 +4515,9 @@
         "id": "8dfbf136.97008",
         "type": "comment",
         "z": "52746a71.334bd4",
-        "name": "Ovladanie teploty v kuchyni",
+        "name": "Ovladanie teploty",
         "info": "",
-        "x": 330,
+        "x": 640,
         "y": 1140,
         "wires": []
     },
@@ -4590,8 +4527,8 @@
         "z": "52746a71.334bd4",
         "name": "Funckia na zisťovanie stavu teploty",
         "info": "",
-        "x": 420,
-        "y": 940,
+        "x": 480,
+        "y": 800,
         "wires": []
     },
     {
@@ -4646,10 +4583,10 @@
         "id": "10c558a5.7f4f17",
         "type": "comment",
         "z": "52746a71.334bd4",
-        "name": "Funkcia teploty v kuchyni",
+        "name": "Funkcia teploty ",
         "info": "",
-        "x": 510,
-        "y": 1460,
+        "x": 640,
+        "y": 1340,
         "wires": []
     },
     {
@@ -4661,22 +4598,24 @@
         "qos": "0",
         "retain": "",
         "broker": "30f5ccb2.518334",
-        "x": 1460,
-        "y": 1440,
+        "x": 1420,
+        "y": 1340,
         "wires": []
     },
     {
         "id": "cc1a5f45.fe689",
         "type": "mqtt in",
         "z": "52746a71.334bd4",
-        "name": "Kurenie_kuchyne",
+        "name": "Kurenie",
         "topic": "home/kuchyne/kurenie",
         "qos": "0",
         "datatype": "auto",
         "broker": "30f5ccb2.518334",
+        "nl": false,
+        "rap": false,
         "inputs": 0,
-        "x": 160,
-        "y": 1680,
+        "x": 90,
+        "y": 1420,
         "wires": [
             [
                 "ad550d2a.fb866"
@@ -4689,7 +4628,7 @@
         "z": "52746a71.334bd4",
         "name": "Nastavenie auto teploty",
         "info": "",
-        "x": 1280,
+        "x": 1140,
         "y": 2040,
         "wires": []
     },
@@ -4720,8 +4659,8 @@
         "checkall": "true",
         "repair": false,
         "outputs": 3,
-        "x": 370,
-        "y": 1680,
+        "x": 330,
+        "y": 1420,
         "wires": [
             [
                 "f00ec548.0192f8"
@@ -4753,8 +4692,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 600,
-        "y": 1740,
+        "x": 560,
+        "y": 1440,
         "wires": [
             [
                 "8d38f07f.8540e"
@@ -4780,8 +4719,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 600,
-        "y": 1700,
+        "x": 560,
+        "y": 1400,
         "wires": [
             [
                 "8d38f07f.8540e"
@@ -4805,8 +4744,8 @@
         "drop": true,
         "allowrate": false,
         "outputs": 1,
-        "x": 1230,
-        "y": 1880,
+        "x": 1170,
+        "y": 1480,
         "wires": [
             [
                 "8d38f07f.8540e"
@@ -4824,8 +4763,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 1240,
-        "y": 1740,
+        "x": 1180,
+        "y": 1380,
         "wires": [
             [
                 "11d2412d.e3675f",
@@ -4853,8 +4792,8 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 590,
-        "y": 1780,
+        "x": 550,
+        "y": 1480,
         "wires": [
             [
                 "8d38f07f.8540e"
@@ -4875,8 +4814,8 @@
         "correl": "",
         "expiry": "",
         "broker": "30f5ccb2.518334",
-        "x": 1430,
-        "y": 1740,
+        "x": 1410,
+        "y": 1400,
         "wires": []
     },
     {
@@ -5499,8 +5438,8 @@
         "initialize": "",
         "finalize": "",
         "libs": [],
-        "x": 180,
-        "y": 2380,
+        "x": 280,
+        "y": 2300,
         "wires": [
             [
                 "5ae4b6c03b8a4daa",
@@ -5532,7 +5471,7 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 90,
+        "x": 130,
         "y": 2300,
         "wires": [
             [
@@ -5556,7 +5495,7 @@
         "z": "52746a71.334bd4",
         "name": "Nastavenie automatickej teploty na priemernú teplotu",
         "info": "",
-        "x": 190,
+        "x": 230,
         "y": 2220,
         "wires": []
     },
@@ -5580,7 +5519,7 @@
         "to": "",
         "reg": false,
         "x": 270,
-        "y": 1980,
+        "y": 2120,
         "wires": [
             []
         ]
@@ -5590,7 +5529,7 @@
         "type": "ui_switch",
         "z": "52746a71.334bd4",
         "name": "",
-        "label": "Povoliť automatické nastavovanie teploty v učitý čas",
+        "label": "Povoliť automatické nastavovanie teploty v určitý čas",
         "tooltip": "",
         "group": "d7418ebef47720b5",
         "order": 1,
@@ -5610,8 +5549,8 @@
         "officon": "",
         "offcolor": "",
         "animate": false,
-        "x": 200,
-        "y": 1900,
+        "x": 260,
+        "y": 2020,
         "wires": [
             [
                 "85af33fb9ebd0c1c"
@@ -5624,8 +5563,8 @@
         "z": "52746a71.334bd4",
         "name": "Zapínanie alebo vypínanie automatickej zmeny teploty v určitý čas",
         "info": "",
-        "x": 240,
-        "y": 1840,
+        "x": 260,
+        "y": 1960,
         "wires": []
     },
     {
@@ -6102,7 +6041,7 @@
         "repeat": "",
         "crontab": "",
         "once": true,
-        "onceDelay": 0.1,
+        "onceDelay": "0.4",
         "topic": "",
         "payload": "auto",
         "payloadType": "str",
@@ -6111,6 +6050,31 @@
         "wires": [
             [
                 "2c7b8d219357d314"
+            ]
+        ]
+    },
+    {
+        "id": "ebc78ad2c072994c",
+        "type": "inject",
+        "z": "52746a71.334bd4",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.2",
+        "topic": "",
+        "payload": "off",
+        "payloadType": "str",
+        "x": 1890,
+        "y": 480,
+        "wires": [
+            [
+                "474abb1a8f0414f9"
             ]
         ]
     },
